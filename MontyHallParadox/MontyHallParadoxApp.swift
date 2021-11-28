@@ -11,7 +11,7 @@ import SwiftUI
 struct MontyHallParadoxApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }

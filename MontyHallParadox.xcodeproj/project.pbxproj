@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		12551497275403CC00B2C78D /* YesNoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12551496275403CC00B2C78D /* YesNoButton.swift */; };
 		1273587627502C43004BD467 /* MontyHallParadoxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1273587527502C43004BD467 /* MontyHallParadoxApp.swift */; };
-		1273587827502C43004BD467 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1273587727502C43004BD467 /* ContentView.swift */; };
+		1273587827502C43004BD467 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1273587727502C43004BD467 /* MainView.swift */; };
 		1273587A27502C45004BD467 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1273587927502C45004BD467 /* Assets.xcassets */; };
 		1273587D27502C45004BD467 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1273587C27502C45004BD467 /* Preview Assets.xcassets */; };
 		1273588427502D1A004BD467 /* ButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1273588327502D1A004BD467 /* ButtonLabel.swift */; };
@@ -17,10 +16,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		12551496275403CC00B2C78D /* YesNoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YesNoButton.swift; sourceTree = "<group>"; };
 		1273587227502C43004BD467 /* MontyHallParadox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MontyHallParadox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1273587527502C43004BD467 /* MontyHallParadoxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontyHallParadoxApp.swift; sourceTree = "<group>"; };
-		1273587727502C43004BD467 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1273587727502C43004BD467 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1273587927502C45004BD467 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1273587C27502C45004BD467 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1273588327502D1A004BD467 /* ButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabel.swift; sourceTree = "<group>"; };
@@ -58,8 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				1273587527502C43004BD467 /* MontyHallParadoxApp.swift */,
-				1273587727502C43004BD467 /* ContentView.swift */,
-				12551496275403CC00B2C78D /* YesNoButton.swift */,
+				1273587727502C43004BD467 /* MainView.swift */,
 				1273588327502D1A004BD467 /* ButtonLabel.swift */,
 				12C850382754216600E7921B /* ResultView.swift */,
 				1273587927502C45004BD467 /* Assets.xcassets */,
@@ -147,9 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1273588427502D1A004BD467 /* ButtonLabel.swift in Sources */,
-				1273587827502C43004BD467 /* ContentView.swift in Sources */,
+				1273587827502C43004BD467 /* MainView.swift in Sources */,
 				12C850392754216600E7921B /* ResultView.swift in Sources */,
-				12551497275403CC00B2C78D /* YesNoButton.swift in Sources */,
 				1273587627502C43004BD467 /* MontyHallParadoxApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
