@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct Monty_Hall_ParadoxApp: App {
+struct MontyHallParadoxApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

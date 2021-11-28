@@ -7,18 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1273587627502C43004BD467 /* Monty_Hall_ParadoxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1273587527502C43004BD467 /* Monty_Hall_ParadoxApp.swift */; };
+		12551497275403CC00B2C78D /* YesNoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12551496275403CC00B2C78D /* YesNoButton.swift */; };
+		1273587627502C43004BD467 /* MontyHallParadoxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1273587527502C43004BD467 /* MontyHallParadoxApp.swift */; };
 		1273587827502C43004BD467 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1273587727502C43004BD467 /* ContentView.swift */; };
 		1273587A27502C45004BD467 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1273587927502C45004BD467 /* Assets.xcassets */; };
 		1273587D27502C45004BD467 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1273587C27502C45004BD467 /* Preview Assets.xcassets */; };
+		1273588427502D1A004BD467 /* ButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1273588327502D1A004BD467 /* ButtonLabel.swift */; };
+		12C850392754216600E7921B /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C850382754216600E7921B /* ResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1273587227502C43004BD467 /* Monty Hall Paradox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Monty Hall Paradox.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1273587527502C43004BD467 /* Monty_Hall_ParadoxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Monty_Hall_ParadoxApp.swift; sourceTree = "<group>"; };
+		12551496275403CC00B2C78D /* YesNoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YesNoButton.swift; sourceTree = "<group>"; };
+		1273587227502C43004BD467 /* MontyHallParadox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MontyHallParadox.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1273587527502C43004BD467 /* MontyHallParadoxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontyHallParadoxApp.swift; sourceTree = "<group>"; };
 		1273587727502C43004BD467 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1273587927502C45004BD467 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1273587C27502C45004BD467 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1273588327502D1A004BD467 /* ButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabel.swift; sourceTree = "<group>"; };
+		12C850382754216600E7921B /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +41,7 @@
 		1273586927502C43004BD467 = {
 			isa = PBXGroup;
 			children = (
-				1273587427502C43004BD467 /* Monty Hall Paradox */,
+				1273587427502C43004BD467 /* MontyHallParadox */,
 				1273587327502C43004BD467 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,20 +49,23 @@
 		1273587327502C43004BD467 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1273587227502C43004BD467 /* Monty Hall Paradox.app */,
+				1273587227502C43004BD467 /* MontyHallParadox.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1273587427502C43004BD467 /* Monty Hall Paradox */ = {
+		1273587427502C43004BD467 /* MontyHallParadox */ = {
 			isa = PBXGroup;
 			children = (
-				1273587527502C43004BD467 /* Monty_Hall_ParadoxApp.swift */,
+				1273587527502C43004BD467 /* MontyHallParadoxApp.swift */,
 				1273587727502C43004BD467 /* ContentView.swift */,
+				12551496275403CC00B2C78D /* YesNoButton.swift */,
+				1273588327502D1A004BD467 /* ButtonLabel.swift */,
+				12C850382754216600E7921B /* ResultView.swift */,
 				1273587927502C45004BD467 /* Assets.xcassets */,
 				1273587B27502C45004BD467 /* Preview Content */,
 			);
-			path = "Monty Hall Paradox";
+			path = MontyHallParadox;
 			sourceTree = "<group>";
 		};
 		1273587B27502C45004BD467 /* Preview Content */ = {
@@ -70,9 +79,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1273587127502C43004BD467 /* Monty Hall Paradox */ = {
+		1273587127502C43004BD467 /* MontyHallParadox */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1273588027502C45004BD467 /* Build configuration list for PBXNativeTarget "Monty Hall Paradox" */;
+			buildConfigurationList = 1273588027502C45004BD467 /* Build configuration list for PBXNativeTarget "MontyHallParadox" */;
 			buildPhases = (
 				1273586E27502C43004BD467 /* Sources */,
 				1273586F27502C43004BD467 /* Frameworks */,
@@ -82,9 +91,9 @@
 			);
 			dependencies = (
 			);
-			name = "Monty Hall Paradox";
+			name = MontyHallParadox;
 			productName = "Monty Hall Paradox";
-			productReference = 1273587227502C43004BD467 /* Monty Hall Paradox.app */;
+			productReference = 1273587227502C43004BD467 /* MontyHallParadox.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -102,7 +111,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1273586D27502C43004BD467 /* Build configuration list for PBXProject "Monty Hall Paradox" */;
+			buildConfigurationList = 1273586D27502C43004BD467 /* Build configuration list for PBXProject "MontyHallParadox" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -115,7 +124,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1273587127502C43004BD467 /* Monty Hall Paradox */,
+				1273587127502C43004BD467 /* MontyHallParadox */,
 			);
 		};
 /* End PBXProject section */
@@ -137,8 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1273588427502D1A004BD467 /* ButtonLabel.swift in Sources */,
 				1273587827502C43004BD467 /* ContentView.swift in Sources */,
-				1273587627502C43004BD467 /* Monty_Hall_ParadoxApp.swift in Sources */,
+				12C850392754216600E7921B /* ResultView.swift in Sources */,
+				12551497275403CC00B2C78D /* YesNoButton.swift in Sources */,
+				1273587627502C43004BD467 /* MontyHallParadoxApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +280,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Monty Hall Paradox/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MontyHallParadox/Preview Content\"";
 				DEVELOPMENT_TEAM = Q3NH456PVT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -283,7 +295,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.holybuddha.Monty-Hall-Paradox";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MontyHallParadox;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -297,7 +309,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Monty Hall Paradox/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"MontyHallParadox/Preview Content\"";
 				DEVELOPMENT_TEAM = Q3NH456PVT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -312,7 +324,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.holybuddha.Monty-Hall-Paradox";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MontyHallParadox;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -322,7 +334,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1273586D27502C43004BD467 /* Build configuration list for PBXProject "Monty Hall Paradox" */ = {
+		1273586D27502C43004BD467 /* Build configuration list for PBXProject "MontyHallParadox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1273587E27502C45004BD467 /* Debug */,
@@ -331,7 +343,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1273588027502C45004BD467 /* Build configuration list for PBXNativeTarget "Monty Hall Paradox" */ = {
+		1273588027502C45004BD467 /* Build configuration list for PBXNativeTarget "MontyHallParadox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1273588127502C45004BD467 /* Debug */,
