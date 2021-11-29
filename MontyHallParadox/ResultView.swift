@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct ResultView: View {
+    @Environment(\.dismiss) var dismiss
     var body: some View {
-        Text("Your result")
+        ZStack{
+            Color.blue
+                .ignoresSafeArea()
+            VStack(alignment: .center, spacing: 50){
+                Text("Your result")
+                    .foregroundColor(.white)
+                Button("Dismiss") { dismiss()}
+                .frame(width: 80, height: 30)
+                .foregroundColor(.white)
+                .background(.yellow)
+                .cornerRadius(20)
+            }
+        }
     }
 }
 

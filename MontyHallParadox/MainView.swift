@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
-    // Настрой переход с экрана на экран
+    // Поработай с размерами кнопок и фрейма для надписи
     @State private var doorTapButton = false
     @State private var okTapButton = false
     @State private var okButtonScore = 0
@@ -18,64 +18,62 @@ struct MainView: View {
     @State private var strokeColor3: Color = .white
     
     var body: some View {
-        ZStack {
-            LinearGradient(
-                gradient: Gradient(colors: [.green, .blue]),
-                startPoint: UnitPoint(x: 0, y: -1),
-                endPoint: UnitPoint(x: -1, y: 0)
-            )
-                .ignoresSafeArea()
-                .opacity(0.5)
-            VStack(spacing: 30){
-                Text(changeMainText())
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-                    .frame(width: 250, height: 100)
-                HStack(spacing: 30){
-                    ButtonLabel(color: .orange, action: {
+        NavigationView{
+            ZStack {
+                LinearGradient(
+                    gradient: Gradient(colors: [.green, .blue]),
+                    startPoint: UnitPoint(x: 0, y: -1),
+                    endPoint: UnitPoint(x: -1, y: 0)
+                )
+                    .ignoresSafeArea()
+                    .opacity(0.5)
+                VStack(alignment: .center, spacing: 30){
+                    Text(changeMainText())
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(.white)
+                        .frame(width: 200, height: 200)
+                        .multilineTextAlignment(.center)
+                    HStack(spacing: 30) {
+                        ButtonLabel(action: {
+                            doorButtonTapped();
+                            changeStrokeColor1()
+                        },
+                                    strokeColor: strokeColor1)
+                        
+                        ButtonLabel(action: {
+                            doorButtonTapped();
+                            changeStrokeColor2()
+                        },
+                                    strokeColor: strokeColor2)
+                    ButtonLabel(action: {
                         doorButtonTapped();
-                        changeStrokeColor1()
+                        changeStrokeColor3()
                     },
-                                strokeColor: strokeColor1)
-                    
-                    ButtonLabel(color: .orange, action: {
-                        doorButtonTapped();
-                        changeStrokeColor2()
-                    },
-                                strokeColor: strokeColor2)
-                }
-                
-                ButtonLabel(color: .orange, action: {
-                    doorButtonTapped();
-                    changeStrokeColor3()
-                },
-                            strokeColor: strokeColor3)
-                
-                Button("OK", action: {okButtonTapped()})
-                    .frame(width: 80, height: 40)
-                    .cornerRadius(20)
-                    .background(.green)
-                    .disabled(!doorTapButton)
-                    .foregroundColor(.white)
-                    .overlay(
+                                strokeColor: strokeColor3)
+                    }
+                    .frame(width: 300, height: 200)
+                    .padding()
+                    Spacer()
+                    Button("OK", action: {okButtonTapped()})
+                        .sheet(isPresented: $okTapButton) { ResultView() }
+                        .frame(width: 80, height: 40)
+                        .cornerRadius(20)
+                        .background(.green)
+                        .disabled(!doorTapButton)
+                        .foregroundColor(.white)
+                        .overlay(
                             RoundedRectangle(cornerRadius: 20)
                                 .stroke(Color.white, lineWidth: 5)
                         )
-                    .cornerRadius(20)
-                    .opacity(doorTapButton ? 1 : 0)
-                    
-                .padding()
-                Spacer()
+                        .cornerRadius(20)
+                        .opacity(doorTapButton ? 1 : 0)
+                        .padding()
+                }
             }
-            
-            
         }
-        
     }
 }
-
 extension MainView {
     private func doorButtonTapped() {
         doorTapButton = true
@@ -83,7 +81,7 @@ extension MainView {
     
     private func okButtonTapped() {
         okButtonScore += 1
-        if okButtonScore == 2 { okTapButton }
+        if okButtonScore == 2 { okTapButton.toggle(); okButtonScore = 0 }
     }
     private func changeStrokeColor1() {
         strokeColor1 = .red

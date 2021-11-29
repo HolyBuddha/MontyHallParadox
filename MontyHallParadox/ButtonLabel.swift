@@ -8,33 +8,38 @@
 import SwiftUI
 
 struct ButtonLabel: View {
-    let color: Color
     let action: () -> Void
     let strokeColor: Color
     
     var body: some View {
-        Button {
+        
+        Button() {
             action()
         } label: {
-            //        GeometryReader { geometry in
-            //            let sideLength = geometry.size.width
-            Rectangle()
-                .cornerRadius(10)
-            //.opacity(disabled ? 0 : 1)
-                .frame(width: 100, height: 200)
-                .foregroundColor(color)
-                .shadow(radius: 30)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(lineWidth: 4)
-                        .foregroundColor(strokeColor)
+            GeometryReader { geometry in
+                let sideLength = geometry.size.width
+                let sideHeight = geometry.size.height
+                ZStack{
+                    Rectangle()
+                        .cornerRadius(10)
                     //.opacity(disabled ? 0 : 1)
-                )
+                        .frame(width: sideLength, height: sideHeight)
+                        .foregroundColor(.orange)
+                        .shadow(radius: 30)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(lineWidth: 4)
+                                .foregroundColor(strokeColor)
+                            //.opacity(disabled ? 0 : 1)
+                        )
+                        .padding()
+                }
+            }
         }
     }
 }
 struct ButtonLabel_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonLabel(color: .red, action: {}, strokeColor: .white)
+        ButtonLabel(action: {}, strokeColor: .white)
     }
 }
