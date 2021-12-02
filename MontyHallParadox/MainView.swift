@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct MainView: View {
-    // Поработай с размерами кнопок и фрейма для надписи
+    // Поработай над кнопками и интерфесом
+    // Рефактори логику
+    
+    let doorWinner = DataManager.shared.doorWinner.shuffled()
+    
+    @State private var result: String = "Your result"
+    
     @State private var doorTapButton = false
     @State private var okTapButton = false
     @State private var okButtonScore = 0
@@ -27,7 +33,7 @@ struct MainView: View {
                 )
                     .ignoresSafeArea()
                     .opacity(0.5)
-                VStack(alignment: .center, spacing: 30){
+                VStack(alignment: .center){
                     Text(changeMainText())
                         .font(.title)
                         .bold()
@@ -35,28 +41,37 @@ struct MainView: View {
                         .frame(width: 200, height: 200)
                         .multilineTextAlignment(.center)
                     HStack(spacing: 30) {
-                        ButtonLabel(action: {
-                            doorButtonTapped();
-                            changeStrokeColor1()
-                        },
-                                    strokeColor: strokeColor1)
+                        Spacer()
+                        ButtonLabel(
+                            action: {
+                                doorButtonTapped();
+                                changeStrokeColor1()
+                                firstDoorTapped()
+                            },
+                            strokeColor: strokeColor1
+                            )
                         
-                        ButtonLabel(action: {
-                            doorButtonTapped();
-                            changeStrokeColor2()
-                        },
-                                    strokeColor: strokeColor2)
-                    ButtonLabel(action: {
-                        doorButtonTapped();
-                        changeStrokeColor3()
-                    },
-                                strokeColor: strokeColor3)
+                        ButtonLabel(
+                            action: {
+                                doorButtonTapped();
+                                changeStrokeColor2()
+                                secondDoorTapped()
+                            },
+                            strokeColor: strokeColor2
+                        )
+                        ButtonLabel(
+                            action: {
+                                doorButtonTapped();
+                                changeStrokeColor3()
+                                thirdDoorTapped()
+                            },
+                            strokeColor: strokeColor3
+                            )
                     }
-                    .frame(width: 300, height: 200)
-                    .padding()
+                    .frame(alignment: .center)
                     Spacer()
                     Button("OK", action: {okButtonTapped()})
-                        .sheet(isPresented: $okTapButton) { ResultView() }
+                        //.sheet(isPresented: $okTapButton) { ResultView() }
                         .frame(width: 80, height: 40)
                         .cornerRadius(20)
                         .background(.green)
@@ -69,11 +84,14 @@ struct MainView: View {
                         .cornerRadius(20)
                         .opacity(doorTapButton ? 1 : 0)
                         .padding()
+                    Text(result)
+                        .foregroundColor(.white)
                 }
             }
         }
     }
 }
+
 extension MainView {
     private func doorButtonTapped() {
         doorTapButton = true
@@ -107,7 +125,24 @@ extension MainView {
             return "Choose your door"
         }
     }
+    private func firstDoorTapped() {
+        if doorTapButton == doorWinner[0] {
+            result = "First Door Win"
+        }
+    }
+    private func secondDoorTapped() {
+        if doorTapButton == doorWinner[1] {
+            result = "Second Door Win"
+        }
+    }
+    private func thirdDoorTapped() {
+        if doorTapButton == doorWinner[2] {
+            result = "Third Door Win"
+        }
+    }
+
 }
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()

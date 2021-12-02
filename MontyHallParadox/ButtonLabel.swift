@@ -17,13 +17,16 @@ struct ButtonLabel: View {
             action()
         } label: {
             GeometryReader { geometry in
-                let sideLength = geometry.size.width
-                let sideHeight = geometry.size.height
+                let sideLength = geometry.size.width * 0.4
+                let sideHeight = geometry.size.height * 0.3
                 ZStack{
                     Rectangle()
                         .cornerRadius(10)
                     //.opacity(disabled ? 0 : 1)
-                        .frame(width: sideLength, height: sideHeight)
+                        .frame(
+                            width: sideLength,
+                            height: sideHeight
+                        )
                         .foregroundColor(.orange)
                         .shadow(radius: 30)
                         .overlay(

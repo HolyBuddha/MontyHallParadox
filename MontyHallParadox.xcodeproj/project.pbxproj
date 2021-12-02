@@ -13,6 +13,9 @@
 		1273587D27502C45004BD467 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1273587C27502C45004BD467 /* Preview Assets.xcassets */; };
 		1273588427502D1A004BD467 /* ButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1273588327502D1A004BD467 /* ButtonLabel.swift */; };
 		12C850392754216600E7921B /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C850382754216600E7921B /* ResultView.swift */; };
+		12D7965F275963F6001D552E /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D7965E275963F6001D552E /* SwiftUIView.swift */; };
+		12FC091027596AE000016577 /* DoorChoiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FC090F27596AE000016577 /* DoorChoiceModel.swift */; };
+		12FC091227596E8700016577 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FC091127596E8700016577 /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,9 @@
 		1273587C27502C45004BD467 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1273588327502D1A004BD467 /* ButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabel.swift; sourceTree = "<group>"; };
 		12C850382754216600E7921B /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		12D7965E275963F6001D552E /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		12FC090F27596AE000016577 /* DoorChoiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorChoiceModel.swift; sourceTree = "<group>"; };
+		12FC091127596E8700016577 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +62,12 @@
 			isa = PBXGroup;
 			children = (
 				1273587527502C43004BD467 /* MontyHallParadoxApp.swift */,
+				12D7965E275963F6001D552E /* SwiftUIView.swift */,
 				1273587727502C43004BD467 /* MainView.swift */,
 				1273588327502D1A004BD467 /* ButtonLabel.swift */,
 				12C850382754216600E7921B /* ResultView.swift */,
+				12FC090F27596AE000016577 /* DoorChoiceModel.swift */,
+				12FC091127596E8700016577 /* DataManager.swift */,
 				1273587927502C45004BD467 /* Assets.xcassets */,
 				1273587B27502C45004BD467 /* Preview Content */,
 			);
@@ -143,10 +152,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12FC091027596AE000016577 /* DoorChoiceModel.swift in Sources */,
 				1273588427502D1A004BD467 /* ButtonLabel.swift in Sources */,
 				1273587827502C43004BD467 /* MainView.swift in Sources */,
+				12FC091227596E8700016577 /* DataManager.swift in Sources */,
 				12C850392754216600E7921B /* ResultView.swift in Sources */,
 				1273587627502C43004BD467 /* MontyHallParadoxApp.swift in Sources */,
+				12D7965F275963F6001D552E /* SwiftUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
