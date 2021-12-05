@@ -9,13 +9,15 @@ import SwiftUI
 
 struct ResultView: View {
     
+    let result: String
+    
     @Environment(\.dismiss) var dismiss
     var body: some View {
         ZStack{
             Color.blue
                 .ignoresSafeArea()
             VStack(alignment: .center, spacing: 50){
-                Text("Hello")
+                Text(result)
                     .foregroundColor(.white)
                 Button("Dismiss") { dismiss()}
                 .frame(width: 80, height: 30)
@@ -29,6 +31,6 @@ struct ResultView: View {
 
 struct ResultView_Previews: PreviewProvider {
     static var previews: some View {
-        ResultView()
+        ResultView(result: "You lose")
     }
 }

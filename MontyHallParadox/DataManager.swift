@@ -11,7 +11,7 @@ class DataManager {
     
     static let shared = DataManager()
     
-    let doorWinner = [true, false, false]
+    let randomDoorWinner = [true, false, false]
     
     private init() {}
 }

@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct MainView: View {
-    // Поработай над кнопками и интерфесом
+    // Поработай над кнопками и интерфейсом
     // Рефактори логику
     
-    let doorWinner = DataManager.shared.doorWinner.shuffled()
+    @State private var doorWinner = DataManager.shared.randomDoorWinner.shuffled()
     
-    @State private var result: String = "Your result"
+    @State private var result: String = "You lose"
+    @State private var doorLooser = 0
     
     @State private var doorTapButton = false
     @State private var okTapButton = false
@@ -48,7 +49,8 @@ struct MainView: View {
                                 changeStrokeColor1()
                                 firstDoorTapped()
                             },
-                            strokeColor: strokeColor1
+                            strokeColor: strokeColor1,
+                            doorNumber: 1
                             )
                         
                         ButtonLabel(
@@ -57,7 +59,8 @@ struct MainView: View {
                                 changeStrokeColor2()
                                 secondDoorTapped()
                             },
-                            strokeColor: strokeColor2
+                            strokeColor: strokeColor2,
+                            doorNumber: 2
                         )
                         ButtonLabel(
                             action: {
@@ -65,13 +68,15 @@ struct MainView: View {
                                 changeStrokeColor3()
                                 thirdDoorTapped()
                             },
-                            strokeColor: strokeColor3
+                            strokeColor: strokeColor3,
+                            doorNumber: 3
                             )
                     }
                     .frame(alignment: .center)
                     Spacer()
-                    Button("OK", action: {okButtonTapped()})
-                        //.sheet(isPresented: $okTapButton) { ResultView() }
+                    Button("Submit", action: {okButtonTapped()})
+                        .sheet(isPresented: $okTapButton) { ResultView(result: result)
+                        }
                         .frame(width: 80, height: 40)
                         .cornerRadius(20)
                         .background(.green)
@@ -84,8 +89,8 @@ struct MainView: View {
                         .cornerRadius(20)
                         .opacity(doorTapButton ? 1 : 0)
                         .padding()
-                    Text(result)
-                        .foregroundColor(.white)
+//                    Text(result)
+//                        .foregroundColor(.white)
                 }
             }
         }
@@ -98,8 +103,9 @@ extension MainView {
     }
     
     private func okButtonTapped() {
+        whichDoorsIsLose()
         okButtonScore += 1
-        if okButtonScore == 2 { okTapButton.toggle(); okButtonScore = 0 }
+        if okButtonScore == 2 { okTapButton.toggle(); okButtonScore = 0;   shuffleTheAnswers() }
     }
     private func changeStrokeColor1() {
         strokeColor1 = .red
@@ -117,10 +123,13 @@ extension MainView {
         strokeColor3 = .red
     }
     
+    private func shuffleTheAnswers() {
+        doorWinner = DataManager.shared.randomDoorWinner.shuffled()
+    }
     
     private func changeMainText() -> String {
         switch okButtonScore {
-        case 1: return "Do you want to change your door?"
+        case 1: return "The Door \(doorLooser) is lose. Do you want to change your door?"
         default:
             return "Choose your door"
         }
@@ -140,7 +149,9 @@ extension MainView {
             result = "Third Door Win"
         }
     }
-
+    private func whichDoorsIsLose() {
+        doorLooser = (doorWinner.firstIndex(of: false) ?? 0) + 1
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {

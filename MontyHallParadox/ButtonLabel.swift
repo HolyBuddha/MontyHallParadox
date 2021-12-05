@@ -10,6 +10,7 @@ import SwiftUI
 struct ButtonLabel: View {
     let action: () -> Void
     let strokeColor: Color
+    let doorNumber: Int
     
     var body: some View {
         
@@ -36,6 +37,12 @@ struct ButtonLabel: View {
                             //.opacity(disabled ? 0 : 1)
                         )
                         .padding()
+                    Text("\(doorNumber)")
+                        .foregroundColor(.black)
+                        .font(.title)
+                        .bold()
+                        .shadow(radius: 70)
+                        
                 }
             }
         }
@@ -43,6 +50,6 @@ struct ButtonLabel: View {
 }
 struct ButtonLabel_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonLabel(action: {}, strokeColor: .white)
+        ButtonLabel(action: {}, strokeColor: .white, doorNumber: 1)
     }
 }
