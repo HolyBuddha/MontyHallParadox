@@ -9,9 +9,12 @@ import SwiftUI
 
 struct MainView: View {
     // Поработай над кнопками и интерфейсом
-    // Рефактори логику
+    // Нажатая дверь не должна отображаться как неправильная, исправь
     
-    @State private var doorWinner = DataManager.shared.randomDoorWinner.shuffled()
+    @State private var whichDoorTap = 0
+   
+    
+    @State private var doorWinner = Int.random(in: 1...3)
     
     @State private var result: String = "You lose"
     @State private var doorLooser = 0
@@ -45,36 +48,33 @@ struct MainView: View {
                         Spacer()
                         ButtonLabel(
                             action: {
-                                doorButtonTapped();
+                                firstDoorTapped();
                                 changeStrokeColor1()
-                                firstDoorTapped()
                             },
                             strokeColor: strokeColor1,
                             doorNumber: 1
-                            )
+                        )
                         
                         ButtonLabel(
                             action: {
-                                doorButtonTapped();
+                                secondDoorTapped();
                                 changeStrokeColor2()
-                                secondDoorTapped()
                             },
                             strokeColor: strokeColor2,
                             doorNumber: 2
                         )
                         ButtonLabel(
                             action: {
-                                doorButtonTapped();
+                                thirdDoorTapped();
                                 changeStrokeColor3()
-                                thirdDoorTapped()
                             },
                             strokeColor: strokeColor3,
                             doorNumber: 3
-                            )
+                        )
                     }
                     .frame(alignment: .center)
                     Spacer()
-                    Button("Submit", action: {okButtonTapped()})
+                    Button("Submit", action: {okButtonTapped(); DoorTapped()})
                         .sheet(isPresented: $okTapButton) { ResultView(result: result)
                         }
                         .frame(width: 80, height: 40)
@@ -89,8 +89,8 @@ struct MainView: View {
                         .cornerRadius(20)
                         .opacity(doorTapButton ? 1 : 0)
                         .padding()
-//                    Text(result)
-//                        .foregroundColor(.white)
+                    Text("\(doorWinner)")
+                        .foregroundColor(.white)
                 }
             }
         }
@@ -98,14 +98,26 @@ struct MainView: View {
 }
 
 extension MainView {
-    private func doorButtonTapped() {
+    private func  firstDoorTapped() {
+        whichDoorTap = 1
+        doorTapButton = true
+    }
+    
+    private func secondDoorTapped() {
+        whichDoorTap = 2
+        doorTapButton = true
+    }
+    
+    private func thirdDoorTapped() {
+        whichDoorTap = 3
         doorTapButton = true
     }
     
     private func okButtonTapped() {
-        whichDoorsIsLose()
         okButtonScore += 1
-        if okButtonScore == 2 { okTapButton.toggle(); okButtonScore = 0;   shuffleTheAnswers() }
+        if okButtonScore == 2 { okTapButton.toggle(); okButtonScore = 0;
+            //doorTapButton.toggle()
+        } else { shuffleTheAnswers() }
     }
     private func changeStrokeColor1() {
         strokeColor1 = .red
@@ -124,7 +136,7 @@ extension MainView {
     }
     
     private func shuffleTheAnswers() {
-        doorWinner = DataManager.shared.randomDoorWinner.shuffled()
+        doorWinner = Int.random(in: 1...3)
     }
     
     private func changeMainText() -> String {
@@ -134,23 +146,12 @@ extension MainView {
             return "Choose your door"
         }
     }
-    private func firstDoorTapped() {
-        if doorTapButton == doorWinner[0] {
-            result = "First Door Win"
+    private func DoorTapped() {
+        switch doorWinner {
+        case 1 : result = "First Door Win"; doorLooser = 2
+        case 2 : result = "Second Door Win"; doorLooser = 3
+        default: result = "Third Door Win"; doorLooser = 1
         }
-    }
-    private func secondDoorTapped() {
-        if doorTapButton == doorWinner[1] {
-            result = "Second Door Win"
-        }
-    }
-    private func thirdDoorTapped() {
-        if doorTapButton == doorWinner[2] {
-            result = "Third Door Win"
-        }
-    }
-    private func whichDoorsIsLose() {
-        doorLooser = (doorWinner.firstIndex(of: false) ?? 0) + 1
     }
 }
 
