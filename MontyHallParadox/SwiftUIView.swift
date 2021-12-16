@@ -17,9 +17,7 @@ struct SwiftUIView: View {
                 Rectangle()
                     .frame(width: width * 0.5, height: height * 0.4)
                     .foregroundColor(.orange)
-//                Image(systemName: "airplane")
-//                    .resizable()
-//                    .scaleEffect(0.3)
+
             }
         }
     }

@@ -49,33 +49,34 @@ struct MainView: View {
                         ButtonLabel(
                             action: {
                                 firstDoorTapped();
-                                changeStrokeColor1()
                             },
-                            strokeColor: strokeColor1,
+                            strokeColor: whichDoorTap == 1 ? .red : .white,
                             doorNumber: 1
                         )
+                            .opacity(doorLooser == 1 ? 0 : 1)
                         
                         ButtonLabel(
                             action: {
                                 secondDoorTapped();
-                                changeStrokeColor2()
                             },
-                            strokeColor: strokeColor2,
+                            strokeColor: whichDoorTap == 2 ? .red : .white,
                             doorNumber: 2
                         )
+                            .opacity(doorLooser == 2 ? 0 : 1)
+                        
                         ButtonLabel(
                             action: {
                                 thirdDoorTapped();
-                                changeStrokeColor3()
                             },
-                            strokeColor: strokeColor3,
+                            strokeColor: whichDoorTap == 3 ? .red : .white,
                             doorNumber: 3
                         )
+                            .opacity(doorLooser == 3 ? 0 : 1)
                     }
                     .frame(alignment: .center)
                     Spacer()
                     Button("Submit", action: {okButtonTapped(); DoorTapped()})
-                        .sheet(isPresented: $okTapButton) { ResultView(result: result)
+                        .sheet(isPresented: $okTapButton) { ResultView(result: result, MainView: self)
                         }
                         .frame(width: 80, height: 40)
                         .cornerRadius(20)
@@ -116,27 +117,12 @@ extension MainView {
     private func okButtonTapped() {
         okButtonScore += 1
         if okButtonScore == 2 { okTapButton.toggle(); okButtonScore = 0;
-            //doorTapButton.toggle()
-        } else { shuffleTheAnswers() }
-    }
-    private func changeStrokeColor1() {
-        strokeColor1 = .red
-        strokeColor2 = .white
-        strokeColor3 = .white
-    }
-    private func changeStrokeColor2() {
-        strokeColor1 = .white
-        strokeColor2 = .red
-        strokeColor3 = .white
-    }
-    private func changeStrokeColor3() {
-        strokeColor1 = .white
-        strokeColor2 = .white
-        strokeColor3 = .red
+        } else {}
     }
     
-    private func shuffleTheAnswers() {
+    func shuffleTheAnswers() {
         doorWinner = Int.random(in: 1...3)
+        doorLooser = 0
     }
     
     private func changeMainText() -> String {
@@ -148,9 +134,9 @@ extension MainView {
     }
     private func DoorTapped() {
         switch doorWinner {
-        case 1 : result = "First Door Win"; doorLooser = 2
-        case 2 : result = "Second Door Win"; doorLooser = 3
-        default: result = "Third Door Win"; doorLooser = 1
+        case 1 : result = "First Door Win"; doorLooser = whichDoorTap == 1 ? 2 : 3
+        case 2 : result = "Second Door Win"; doorLooser = whichDoorTap == 2 ? 1 : 3
+        default: result = "Third Door Win"; doorLooser = whichDoorTap == 3 ? 1 : 2
         }
     }
 }
