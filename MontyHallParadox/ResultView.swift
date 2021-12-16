@@ -12,7 +12,7 @@ struct ResultView: View {
     let result: String
     let MainView: MainView
     
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     var body: some View {
         ZStack{
             Color.blue
@@ -20,7 +20,7 @@ struct ResultView: View {
             VStack(alignment: .center, spacing: 50) {
                 Text(result)
                     .foregroundColor(.white)
-                Button("Dismiss") { dismiss(); MainView.shuffleTheAnswers()}
+                Button("Dismiss") { presentationMode.wrappedValue.dismiss(); MainView.shuffleTheAnswers()}
                 .frame(width: 80, height: 30)
                 .foregroundColor(.white)
                 .background(.yellow)

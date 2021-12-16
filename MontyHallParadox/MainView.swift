@@ -76,8 +76,11 @@ struct MainView: View {
                     .frame(alignment: .center)
                     Spacer()
                     Button("Submit", action: {okButtonTapped(); DoorTapped()})
-                        .sheet(isPresented: $okTapButton) { ResultView(result: result, MainView: self)
+                        .fullScreenCover(isPresented: $okTapButton) {
+                            ResultView(result: result, MainView: self)
                         }
+//                        //.sheet(isPresented: $okTapButton) { ResultView(result: result, MainView: self)
+//                        }
                         .frame(width: 80, height: 40)
                         .cornerRadius(20)
                         .background(.green)
