@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct MainView: View {
-    // Добавь статистику по играм
-    // Пусть проигравшая дверь будет менять цвет или картинку, можно сделать ее неактивной
-    //добавь счетчики для статистики
+    // Добавь статистику по процентам на резалт вью
+    // Добавь свойство для победы/поражения
+    // добавь userDefaults
     
     @State private var whichDoorTap = 0
     @State private var firstDoorCount = 0
@@ -82,7 +82,7 @@ struct MainView: View {
                     Spacer()
                     Button("Submit", action: {okButtonTapped(); DoorTapped()})
                         .fullScreenCover(isPresented: $okTapButton) {
-                            ResultView(result: result, MainView: self, numberOfStayGames: numberOfStayGames, numberOfSwitchedGames: numberOfSwitchedGames, percentOfStayGamesWins: 4, percentOfSwitchedGamesWins: 4
+                            ResultView(result: result, MainView: self, numberOfStayGames: numberOfStayGames, numberOfSwitchedGames: numberOfSwitchedGames
                             )
                         }
                         .frame(width: 80, height: 40)
@@ -151,6 +151,7 @@ extension MainView {
     
     private func GamesCount() {
         if firstDoorCount == secondDoorCount { numberOfStayGames += 1 } else { numberOfSwitchedGames += 1 }
+        
     }
 }
 

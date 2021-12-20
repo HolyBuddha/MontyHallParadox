@@ -13,8 +13,9 @@ struct ResultView: View {
     let MainView: MainView
     let numberOfStayGames: Int
     let numberOfSwitchedGames: Int
-    let percentOfStayGamesWins: Double
-    let percentOfSwitchedGamesWins: Double
+    @State private var percentOfStayGamesWins: Double = 0
+    @State private var percentOfSwitchedGamesWins: Double = 0
+    @State private var sumOfGames: Int = 0
     
     
     @Environment(\.presentationMode) var presentationMode
@@ -45,15 +46,21 @@ struct ResultView: View {
                     .foregroundColor(.white)
                     .background(.yellow)
                     .cornerRadius(20)
+                    .padding()
             }
     }
-            
     }
 
+extension ResultView {
+    func percentCount() {
+        sumOfGames = numberOfStayGames + numberOfSwitchedGames
+        
+    }
+}
 
 
 struct ResultView_Previews: PreviewProvider {
     static var previews: some View {
-        ResultView(result: "You lose", MainView: MainView(), numberOfStayGames: 3, numberOfSwitchedGames: 5, percentOfStayGamesWins: 30, percentOfSwitchedGamesWins: 50)
+        ResultView(result: "You lose", MainView: MainView(), numberOfStayGames: 3, numberOfSwitchedGames: 5)
     }
 }
