@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct MainView: View {
-    // Поработай над кнопками и интерфейсом
-    // Нажатая дверь не должна отображаться как неправильная, исправь
+    // Добавь статистику по играм
+    // Пусть проигравшая дверь будет менять цвет или картинку, можно сделать ее неактивной
+    //добавь счетчики для статистики
     
     @State private var whichDoorTap = 0
+    @State private var firstDoorCount = 0
+    @State private var secondDoorCount = 0
    
     
     @State private var doorWinner = Int.random(in: 1...3)
@@ -23,10 +26,9 @@ struct MainView: View {
     @State private var okTapButton = false
     @State private var okButtonScore = 0
     
-    @State private var strokeColor1: Color = .white
-    @State private var strokeColor2: Color = .white
-    @State private var strokeColor3: Color = .white
-    
+    @State private var numberOfStayGames = 0
+    @State private var numberOfSwitchedGames = 0
+        
     var body: some View {
         NavigationView{
             ZStack {
@@ -51,36 +53,38 @@ struct MainView: View {
                                 firstDoorTapped();
                             },
                             strokeColor: whichDoorTap == 1 ? .red : .white,
-                            doorNumber: 1
+                            doorNumber: 1,
+                            doorColor: doorLooser == 1 ? .red : .orange
                         )
-                            .opacity(doorLooser == 1 ? 0 : 1)
+                            .disabled(doorLooser == 1)
                         
                         ButtonLabel(
                             action: {
                                 secondDoorTapped();
                             },
                             strokeColor: whichDoorTap == 2 ? .red : .white,
-                            doorNumber: 2
+                            doorNumber: 2,
+                            doorColor: doorLooser == 2 ? .red : .orange
                         )
-                            .opacity(doorLooser == 2 ? 0 : 1)
+                            .disabled(doorLooser == 2)
                         
                         ButtonLabel(
                             action: {
                                 thirdDoorTapped();
                             },
                             strokeColor: whichDoorTap == 3 ? .red : .white,
-                            doorNumber: 3
+                            doorNumber: 3,
+                            doorColor: doorLooser == 3 ? .red : .orange
                         )
-                            .opacity(doorLooser == 3 ? 0 : 1)
+                            .disabled(doorLooser == 3)
                     }
                     .frame(alignment: .center)
                     Spacer()
                     Button("Submit", action: {okButtonTapped(); DoorTapped()})
                         .fullScreenCover(isPresented: $okTapButton) {
-                            ResultView(result: result, MainView: self)
+                            ResultView(result: result, MainView: self, numberOfStayGames: numberOfStayGames, numberOfSwitchedGames: numberOfSwitchedGames, percentOfStayGamesWins: 4, percentOfSwitchedGamesWins: 4
+                            )
                         }
-//                        //.sheet(isPresented: $okTapButton) { ResultView(result: result, MainView: self)
-//                        }
                         .frame(width: 80, height: 40)
                         .cornerRadius(20)
                         .background(.green)
@@ -119,28 +123,34 @@ extension MainView {
     
     private func okButtonTapped() {
         okButtonScore += 1
-        if okButtonScore == 2 { okTapButton.toggle(); okButtonScore = 0;
-        } else {}
+        if okButtonScore == 2 { okTapButton.toggle(); okButtonScore = 0; secondDoorCount = whichDoorTap; GamesCount()
+        } else { firstDoorCount = whichDoorTap }
     }
     
     func shuffleTheAnswers() {
         doorWinner = Int.random(in: 1...3)
         doorLooser = 0
+        firstDoorCount = 0
+        secondDoorCount = 0
     }
     
     private func changeMainText() -> String {
         switch okButtonScore {
         case 1: return "The Door \(doorLooser) is lose. Do you want to change your door?"
         default:
-            return "Choose your door"
+            return "Please choose your door"
         }
     }
     private func DoorTapped() {
         switch doorWinner {
-        case 1 : result = "First Door Win"; doorLooser = whichDoorTap == 1 ? 2 : 3
-        case 2 : result = "Second Door Win"; doorLooser = whichDoorTap == 2 ? 1 : 3
-        default: result = "Third Door Win"; doorLooser = whichDoorTap == 3 ? 1 : 2
+        case 1 : result = "First Door Win"; doorLooser = whichDoorTap == 2 ? 3 : 2
+        case 2 : result = "Second Door Win"; doorLooser = whichDoorTap == 1 ? 3 : 1
+        default: result = "Third Door Win"; doorLooser = whichDoorTap == 1 ? 2 : 1
         }
+    }
+    
+    private func GamesCount() {
+        if firstDoorCount == secondDoorCount { numberOfStayGames += 1 } else { numberOfSwitchedGames += 1 }
     }
 }
 

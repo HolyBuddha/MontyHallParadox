@@ -7,6 +7,8 @@
 
 import Foundation
 
+var statistics: Statistics!
+
 class DataManager {
     
     static let shared = DataManager()
@@ -14,4 +16,5 @@ class DataManager {
     let randomDoorWinner = [true, false, false]
     
     private init() {}
+    
 }

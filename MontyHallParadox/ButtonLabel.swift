@@ -11,6 +11,7 @@ struct ButtonLabel: View {
     let action: () -> Void
     let strokeColor: Color
     let doorNumber: Int
+    let doorColor: Color
     
     var body: some View {
         
@@ -28,7 +29,7 @@ struct ButtonLabel: View {
                             width: sideLength,
                             height: sideHeight
                         )
-                        .foregroundColor(.orange)
+                        .foregroundColor(doorColor)
                         .shadow(radius: 30)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
@@ -50,6 +51,6 @@ struct ButtonLabel: View {
 }
 struct ButtonLabel_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonLabel(action: {}, strokeColor: .white, doorNumber: 1)
+        ButtonLabel(action: {}, strokeColor: .white, doorNumber: 1, doorColor: .red)
     }
 }
