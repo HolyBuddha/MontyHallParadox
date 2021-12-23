@@ -10,6 +10,7 @@ import SwiftUI
 struct MainView: View {
     // Добавь статистику по процентам на резалт вью
     // Добавь свойство для победы/поражения
+    // Добавь анимацию на двери при открытии
     // добавь userDefaults
     
     @State private var whichDoorTap = 0
@@ -19,15 +20,19 @@ struct MainView: View {
     
     @State private var doorWinner = Int.random(in: 1...3)
     
-    @State private var result: String = "You lose"
+    @State private var result: String = "Hello"
     @State private var doorLooser = 0
     
     @State private var doorTapButton = false
     @State private var okTapButton = false
+    @State private var alertTapButton = false
+    
     @State private var okButtonScore = 0
     
     @State private var numberOfStayGames = 0
     @State private var numberOfSwitchedGames = 0
+    @State private var numberOfWinsStayGames = 0
+    @State private var numberOfWinsSwitchedGames = 0
         
     var body: some View {
         NavigationView{
@@ -80,11 +85,11 @@ struct MainView: View {
                     }
                     .frame(alignment: .center)
                     Spacer()
-                    Button("Submit", action: {okButtonTapped(); DoorTapped()})
-                        .fullScreenCover(isPresented: $okTapButton) {
-                            ResultView(result: result, MainView: self, numberOfStayGames: numberOfStayGames, numberOfSwitchedGames: numberOfSwitchedGames
-                            )
-                        }
+                    Button("Submit", action: {okButtonTapped(); doorTapped()})
+//                        .fullScreenCover(isPresented: $okTapButton) {
+//                            ResultView(result: result, MainView: self, numberOfStayGames: numberOfStayGames, numberOfSwitchedGames: numberOfSwitchedGames
+//                            )
+//                        }
                         .frame(width: 80, height: 40)
                         .cornerRadius(20)
                         .background(.green)
@@ -97,6 +102,19 @@ struct MainView: View {
                         .cornerRadius(20)
                         .opacity(doorTapButton ? 1 : 0)
                         .padding()
+                        .alert(result, isPresented: $okTapButton) {
+                            Button("OK") { alertTapButton.toggle() }
+                        }
+                        .fullScreenCover(isPresented: $alertTapButton) {
+                            ResultView(
+                                result: winLoseText(),
+                                MainView: self,
+                                numberOfStayGames: numberOfStayGames,
+                                numberOfSwitchedGames: numberOfSwitchedGames,
+                                numberOfWinsStayGames: numberOfWinsStayGames,
+                                numberOfWinsSwitchedGames: numberOfWinsSwitchedGames
+                            )
+                        }
                     Text("\(doorWinner)")
                         .foregroundColor(.white)
                 }
@@ -123,7 +141,7 @@ extension MainView {
     
     private func okButtonTapped() {
         okButtonScore += 1
-        if okButtonScore == 2 { okTapButton.toggle(); okButtonScore = 0; secondDoorCount = whichDoorTap; GamesCount()
+        if okButtonScore == 2 { okTapButton.toggle(); okButtonScore = 0; secondDoorCount = whichDoorTap; gamesCount(); gamesWinsCount()
         } else { firstDoorCount = whichDoorTap }
     }
     
@@ -141,7 +159,7 @@ extension MainView {
             return "Please choose your door"
         }
     }
-    private func DoorTapped() {
+    private func doorTapped() {
         switch doorWinner {
         case 1 : result = "First Door Win"; doorLooser = whichDoorTap == 2 ? 3 : 2
         case 2 : result = "Second Door Win"; doorLooser = whichDoorTap == 1 ? 3 : 1
@@ -149,9 +167,18 @@ extension MainView {
         }
     }
     
-    private func GamesCount() {
-        if firstDoorCount == secondDoorCount { numberOfStayGames += 1 } else { numberOfSwitchedGames += 1 }
-        
+    private func gamesCount() {
+        if firstDoorCount == secondDoorCount { numberOfStayGames += 1 }
+        else { numberOfSwitchedGames += 1 }
+    }
+    
+    private func gamesWinsCount() {
+        if firstDoorCount == secondDoorCount && doorWinner == whichDoorTap { numberOfWinsStayGames += 1 }
+        else if firstDoorCount != secondDoorCount && doorWinner == whichDoorTap { numberOfWinsSwitchedGames += 1 }
+    }
+    
+    private func winLoseText() -> Bool {
+        doorWinner == whichDoorTap 
     }
 }
 
