@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct MainView: View {
-    // Добавь статистику по процентам на резалт вью
-    // Добавь свойство для победы/поражения
     // Добавь анимацию на двери при открытии
+    // Добавь функционал кнопке помощи
     // добавь userDefaults
     
     @State private var whichDoorTap = 0
     @State private var firstDoorCount = 0
     @State private var secondDoorCount = 0
-   
+    
     
     @State private var doorWinner = Int.random(in: 1...3)
     
@@ -33,7 +32,7 @@ struct MainView: View {
     @State private var numberOfSwitchedGames = 0
     @State private var numberOfWinsStayGames = 0
     @State private var numberOfWinsSwitchedGames = 0
-        
+    
     var body: some View {
         NavigationView{
             ZStack {
@@ -45,17 +44,30 @@ struct MainView: View {
                     .ignoresSafeArea()
                     .opacity(0.5)
                 VStack(alignment: .center){
-                    Text(changeMainText())
+                    Text(
+                        changeMainText())
                         .font(.title)
                         .bold()
                         .foregroundColor(.white)
                         .frame(width: 200, height: 200)
                         .multilineTextAlignment(.center)
+                        .toolbar {
+                            Button(action: {
+                                
+                            }, label: {
+                                Image(systemName: "questionmark.circle")
+                                    .foregroundColor(.white)
+                                    .padding()
+                            }
+                            )
+                        }
                     HStack(spacing: 30) {
                         Spacer()
                         ButtonLabel(
                             action: {
-                                firstDoorTapped();
+                                withAnimation(.default) {
+                                    firstDoorTapped();
+                                }
                             },
                             strokeColor: whichDoorTap == 1 ? .red : .white,
                             doorNumber: 1,
@@ -65,7 +77,9 @@ struct MainView: View {
                         
                         ButtonLabel(
                             action: {
-                                secondDoorTapped();
+                                withAnimation(.default) {
+                                    secondDoorTapped();
+                                }
                             },
                             strokeColor: whichDoorTap == 2 ? .red : .white,
                             doorNumber: 2,
@@ -75,7 +89,9 @@ struct MainView: View {
                         
                         ButtonLabel(
                             action: {
-                                thirdDoorTapped();
+                                withAnimation(.default) {
+                                    thirdDoorTapped();
+                                }
                             },
                             strokeColor: whichDoorTap == 3 ? .red : .white,
                             doorNumber: 3,
@@ -85,11 +101,15 @@ struct MainView: View {
                     }
                     .frame(alignment: .center)
                     Spacer()
-                    Button("Submit", action: {okButtonTapped(); doorTapped()})
-//                        .fullScreenCover(isPresented: $okTapButton) {
-//                            ResultView(result: result, MainView: self, numberOfStayGames: numberOfStayGames, numberOfSwitchedGames: numberOfSwitchedGames
-//                            )
-//                        }
+                    Button("Submit", action: {
+                        okButtonTapped();
+                        doorTapped()
+                    }
+                    )
+                    //                        .fullScreenCover(isPresented: $okTapButton) {
+                    //                            ResultView(result: result, MainView: self, numberOfStayGames: numberOfStayGames, numberOfSwitchedGames: numberOfSwitchedGames
+                    //                            )
+                    //                        }
                         .frame(width: 80, height: 40)
                         .cornerRadius(20)
                         .background(.green)
@@ -115,7 +135,7 @@ struct MainView: View {
                                 numberOfWinsSwitchedGames: numberOfWinsSwitchedGames
                             )
                         }
-                    Text("\(doorWinner)")
+                    //Text("\(doorWinner)")
                         .foregroundColor(.white)
                 }
             }
@@ -141,7 +161,12 @@ extension MainView {
     
     private func okButtonTapped() {
         okButtonScore += 1
-        if okButtonScore == 2 { okTapButton.toggle(); okButtonScore = 0; secondDoorCount = whichDoorTap; gamesCount(); gamesWinsCount()
+        if okButtonScore == 2 {
+            okTapButton.toggle();
+            okButtonScore = 0;
+            secondDoorCount = whichDoorTap;
+            gamesCount();
+            gamesWinsCount()
         } else { firstDoorCount = whichDoorTap }
     }
     
@@ -173,12 +198,13 @@ extension MainView {
     }
     
     private func gamesWinsCount() {
-        if firstDoorCount == secondDoorCount && doorWinner == whichDoorTap { numberOfWinsStayGames += 1 }
+        if firstDoorCount == secondDoorCount && doorWinner == whichDoorTap { numberOfWinsStayGames += 1
+        }
         else if firstDoorCount != secondDoorCount && doorWinner == whichDoorTap { numberOfWinsSwitchedGames += 1 }
     }
     
     private func winLoseText() -> Bool {
-        doorWinner == whichDoorTap 
+        doorWinner == whichDoorTap
     }
 }
 

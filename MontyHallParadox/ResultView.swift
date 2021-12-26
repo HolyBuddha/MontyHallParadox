@@ -17,54 +17,69 @@ struct ResultView: View {
     let numberOfWinsStayGames: Int
     let numberOfWinsSwitchedGames: Int
     
-    @State private var percentOfStayGamesWins: Double = 0
-    @State private var percentOfSwitchedGamesWins: Double = 0
-    
     
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         Color.blue
             .ignoresSafeArea()
             .overlay(
+                Group{
                 VStack(alignment: .leading, spacing: 40) {
                     Text(showMainText())
                         .font(.largeTitle)
+                        .padding(.bottom, 50)
                     VStack(alignment: .leading, spacing: 10) {
-                    Text("Stay stats")
-                    Text("Number of games: \(numberOfStayGames)")
-                    Text("Number of win games: \(numberOfWinsStayGames)")
-                    Text("Percent of wins: \(percentOfStayGamesWins)")
+                        Text("Stay stats")
+                        Text("Number of games: \(numberOfStayGames)")
+                        Text("Number of win games: \(numberOfWinsStayGames)")
+                        Text("Winning Percentage: \(countPercentOfStayGamesWins())%")
                     }
                     VStack(alignment: .leading, spacing: 10) {
-                    Text("Switched stats")
-                    Text("Number of games: \(numberOfSwitchedGames)")
-                    Text("Number of win games: \(numberOfWinsSwitchedGames)")
-                    Text("Percent of wins: \(percentOfSwitchedGamesWins)")
+                        Text("Switched stats")
+                        Text("Number of games: \(numberOfSwitchedGames)")
+                        Text("Number of win games: \(numberOfWinsSwitchedGames)")
+                        Text("Winning Percentage: \(countPercentOfSwitchedGamesWins())%")
+                    }
                 }
-                    Text("\(numberOfStayGames + numberOfSwitchedGames)")
                 }
                     .foregroundColor(.white)
                     .padding()
-                )
+                    .padding(.bottom, 100)
+            )
             .overlay(alignment: .bottom) {
                 Button("Dismiss") { presentationMode.wrappedValue.dismiss(); MainView.shuffleTheAnswers();
-                    }
-                    .frame(width: 80, height: 30)
-                    .foregroundColor(.white)
-                    .background(.yellow)
-                    .cornerRadius(20)
-                    .padding()
+                }
+                .frame(width: 80, height: 30)
+                .foregroundColor(.white)
+                .background(.yellow)
+                .cornerRadius(20)
+                .padding()
             }
     }
-    }
+}
 
 extension ResultView {
     private func showMainText() -> String {
         result ? "Congratulations, you won!" : "Sorry, but you lose"
     }
-//    private func percentOfWins() -> Double {
-//        result ? 
-//    }
+    
+    private func countPercentOfStayGamesWins() -> String {
+        var result: String
+        if numberOfStayGames != 0 {
+            result = String(format: "%.1f", Double(numberOfWinsStayGames) / Double(numberOfStayGames) * 100)
+        } else { result = "0" }
+        return result
+    }
+    
+    private func countPercentOfSwitchedGamesWins() -> String {
+        var result: String
+        if numberOfSwitchedGames != 0 {
+            result = String(format: "%.1f", Double(numberOfWinsSwitchedGames) / Double(numberOfSwitchedGames) * 100)
+        } else { result = "0" }
+        return result
+    }
+    
+    
 }
 struct ResultView_Previews: PreviewProvider {
     static var previews: some View {
