@@ -6,16 +6,15 @@
 //
 
 import Foundation
-import CoreData
 
-class DataManager: ObservableObject {
-    let container = NSPersistentContainer(name: "CoreDataModelStats")
+var statistics: Statistics!
+
+class DataManager {
     
-    init() {
-        container.loadPersistentStores { description, error in
-            if let error = error {
-                print("Core Data failed to load: \(error.localizedDescription)")
-            }
-        }
-    }
+    static let shared = DataManager()
+    
+    let randomDoorWinner = [true, false, false]
+    
+    private init() {}
+    
 }

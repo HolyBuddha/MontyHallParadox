@@ -8,12 +8,9 @@
 import SwiftUI
 
 struct MainView: View {
-    // Почини Core Data
     // Добавь анимацию на двери при открытии
     // Добавь функционал кнопке помощи
     // добавь userDefaults
-    // Добавь начальный экран
-    
     
     @State private var whichDoorTap = 0
     @State private var firstDoorCount = 0
@@ -109,6 +106,10 @@ struct MainView: View {
                         doorTapped()
                     }
                     )
+                    //                        .fullScreenCover(isPresented: $okTapButton) {
+                    //                            ResultView(result: result, MainView: self, numberOfStayGames: numberOfStayGames, numberOfSwitchedGames: numberOfSwitchedGames
+                    //                            )
+                    //                        }
                         .frame(width: 80, height: 40)
                         .cornerRadius(20)
                         .background(.green)
@@ -206,6 +207,7 @@ extension MainView {
         doorWinner == whichDoorTap
     }
 }
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()

@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct ResultView: View {
-    @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var stats: FetchedResults<StatsOfStayingGames>
-
+    
     let result: Bool
     let MainView: MainView
     
@@ -31,15 +29,15 @@ struct ResultView: View {
                         .font(.largeTitle)
                         .padding(.bottom, 50)
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("Stay Stats")
-                        Text("Number of Games: \(numberOfStayGames)")
-                        Text("Number of Games Won: \(numberOfWinsStayGames)")
+                        Text("Stay stats")
+                        Text("Number of games: \(numberOfStayGames)")
+                        Text("Number of win games: \(numberOfWinsStayGames)")
                         Text("Winning Percentage: \(countPercentOfStayGamesWins())%")
                     }
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("Switched Stats")
-                        Text("Number of Games: \(numberOfSwitchedGames)")
-                        Text("Number of Games Won: \(numberOfWinsSwitchedGames)")
+                        Text("Switched stats")
+                        Text("Number of games: \(numberOfSwitchedGames)")
+                        Text("Number of win games: \(numberOfWinsSwitchedGames)")
                         Text("Winning Percentage: \(countPercentOfSwitchedGamesWins())%")
                     }
                 }
@@ -49,10 +47,7 @@ struct ResultView: View {
                     .padding(.bottom, 100)
             )
             .overlay(alignment: .bottom) {
-                Button("Dismiss") {
-                    presentationMode.wrappedValue.dismiss();
-                    MainView.shuffleTheAnswers();
-                    saveStatToDataManager()
+                Button("Dismiss") { presentationMode.wrappedValue.dismiss(); MainView.shuffleTheAnswers();
                 }
                 .frame(width: 80, height: 30)
                 .foregroundColor(.white)
@@ -84,15 +79,7 @@ extension ResultView {
         return result
     }
     
-    private func saveStatToDataManager() {
-        let statsForStayingGame = StatsOfStayingGames(context: moc)
-        statsForStayingGame.id = UUID()
-        statsForStayingGame.numberOfStayGames = Int16(numberOfStayGames)
-        statsForStayingGame.numberOfWinsStayGames = Int16(numberOfWinsStayGames)
-        
-        try? moc.save()
     
-}
 }
 struct ResultView_Previews: PreviewProvider {
     static var previews: some View {
