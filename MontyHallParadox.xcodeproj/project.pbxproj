@@ -14,6 +14,7 @@
 		1273588427502D1A004BD467 /* ButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1273588327502D1A004BD467 /* ButtonLabel.swift */; };
 		127A47C9276FCB2E00FDD143 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127A47C8276FCB2E00FDD143 /* Statistics.swift */; };
 		12C850392754216600E7921B /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C850382754216600E7921B /* ResultView.swift */; };
+		12CD9D78277D064700A21AA6 /* CoreDataModelStats.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 12CD9D76277D064700A21AA6 /* CoreDataModelStats.xcdatamodeld */; };
 		12FC091227596E8700016577 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12FC091127596E8700016577 /* DataManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		1273588327502D1A004BD467 /* ButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabel.swift; sourceTree = "<group>"; };
 		127A47C8276FCB2E00FDD143 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		12C850382754216600E7921B /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		12CD9D77277D064700A21AA6 /* CoreDataModelStats.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModelStats.xcdatamodel; sourceTree = "<group>"; };
 		12FC091127596E8700016577 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +66,7 @@
 				1273588327502D1A004BD467 /* ButtonLabel.swift */,
 				12C850382754216600E7921B /* ResultView.swift */,
 				12FC091127596E8700016577 /* DataManager.swift */,
+				12CD9D76277D064700A21AA6 /* CoreDataModelStats.xcdatamodeld */,
 				127A47CA276FCDA400FDD143 /* Models */,
 				1273587927502C45004BD467 /* Assets.xcassets */,
 				1273587B27502C45004BD467 /* Preview Content */,
@@ -159,6 +162,7 @@
 			files = (
 				1273588427502D1A004BD467 /* ButtonLabel.swift in Sources */,
 				1273587827502C43004BD467 /* MainView.swift in Sources */,
+				12CD9D78277D064700A21AA6 /* CoreDataModelStats.xcdatamodeld in Sources */,
 				12FC091227596E8700016577 /* DataManager.swift in Sources */,
 				127A47C9276FCB2E00FDD143 /* Statistics.swift in Sources */,
 				12C850392754216600E7921B /* ResultView.swift in Sources */,
@@ -365,6 +369,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		12CD9D76277D064700A21AA6 /* CoreDataModelStats.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				12CD9D77277D064700A21AA6 /* CoreDataModelStats.xcdatamodel */,
+			);
+			currentVersion = 12CD9D77277D064700A21AA6 /* CoreDataModelStats.xcdatamodel */;
+			path = CoreDataModelStats.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1273586A27502C43004BD467 /* Project object */;
 }
