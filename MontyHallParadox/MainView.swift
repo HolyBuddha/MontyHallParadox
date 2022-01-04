@@ -28,10 +28,11 @@ struct MainView: View {
     
     @State private var okButtonScore = 0
     
-    @State private var numberOfStayGames = 0
-    @State private var numberOfSwitchedGames = 0
-    @State private var numberOfWinsStayGames = 0
-    @State private var numberOfWinsSwitchedGames = 0
+    @State private var numberOfStayGames = UserDefaults.standard.integer(forKey: "numberOfStayGames")
+    @State private var numberOfSwitchedGames = UserDefaults.standard.integer(forKey: "numberOfSwitchedGames")
+    @State private var numberOfWinsStayGames = UserDefaults.standard.integer(forKey: "numberOfWinsStayGames")
+    @State private var numberOfWinsSwitchedGames = UserDefaults.standard.integer(forKey: "numberOfWinsSwitchedGames")
+    
     
     var body: some View {
         NavigationView{

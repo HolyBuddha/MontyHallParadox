@@ -47,7 +47,8 @@ struct ResultView: View {
                     .padding(.bottom, 100)
             )
             .overlay(alignment: .bottom) {
-                Button("Dismiss") { presentationMode.wrappedValue.dismiss(); MainView.shuffleTheAnswers();
+                Button("Dismiss") { presentationMode.wrappedValue.dismiss(); MainView.shuffleTheAnswers()
+                    saveStatsToUserDefaults();
                 }
                 .frame(width: 80, height: 30)
                 .foregroundColor(.white)
@@ -79,6 +80,12 @@ extension ResultView {
         return result
     }
     
+    private func saveStatsToUserDefaults() {
+        UserDefaults.standard.set(numberOfStayGames, forKey: "numberOfStayGames")
+        UserDefaults.standard.set(numberOfSwitchedGames, forKey: "numberOfSwitchedGames")
+        UserDefaults.standard.set(numberOfWinsStayGames, forKey: "numberOfWinsStayGames")
+        UserDefaults.standard.set(numberOfWinsSwitchedGames, forKey: "numberOfWinsSwitchedGames")
+    }
     
 }
 struct ResultView_Previews: PreviewProvider {
