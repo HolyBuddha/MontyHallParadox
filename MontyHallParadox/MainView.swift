@@ -10,7 +10,8 @@ import SwiftUI
 struct MainView: View {
     // Добавь анимацию на двери при открытии
     // Добавь функционал кнопке помощи
-    // добавь userDefaults
+    // Добавь кнопку настроек ( сброс статистики, история приложения)
+    // подумай как внедрить в userDefaults модель Statistics
     
     @ObservedObject var userSettings = UserSettings()
     
@@ -29,7 +30,7 @@ struct MainView: View {
     @State private var alertTapButton = false
     
     @State private var okButtonScore = 0
-
+    
     var body: some View {
         NavigationView{
             ZStack {
@@ -49,17 +50,27 @@ struct MainView: View {
                         .frame(width: 200, height: 200)
                         .multilineTextAlignment(.center)
                         .toolbar {
-                            Button(action: {
-                                userSettings.numberOfStayGames = 0
-                                userSettings.numberOfSwitchedGames = 0
-                                userSettings.numberOfWinsStayGames = 0
-                                userSettings.numberOfWinsSwitchedGames = 0
-                            }, label: {
-                                Image(systemName: "questionmark.circle")
-                                    .foregroundColor(.white)
-                                    .padding()
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                Button(action: {
+                                    alertTapButton.toggle()
+                                }, label: {
+                                    Text("Stats")
+                                        .foregroundColor(.white)
+                                        .bold()
+                                        .padding()
+                                }
+                                )
                             }
-                            )
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                Button(action: {
+                                    clearStats()
+                                }, label: {
+                                    Image(systemName: "gearshape")
+                                        .foregroundColor(.white)
+                                        .padding()
+                                }
+                                )
+                            }
                         }
                     HStack(spacing: 30) {
                         Spacer()
@@ -106,10 +117,6 @@ struct MainView: View {
                         doorTapped()
                     }
                     )
-                    //                        .fullScreenCover(isPresented: $okTapButton) {
-                    //                            ResultView(result: result, MainView: self, numberOfStayGames: numberOfStayGames, numberOfSwitchedGames: numberOfSwitchedGames
-                    //                            )
-                    //                        }
                         .frame(width: 80, height: 40)
                         .cornerRadius(20)
                         .background(.green)
@@ -131,7 +138,7 @@ struct MainView: View {
                                 mainView: self
                             )
                         }
-                    Text("\(doorWinner)")
+                    //Text("\(doorWinner)")
                         .foregroundColor(.white)
                 }
             }
@@ -202,8 +209,15 @@ extension MainView {
     private func winLoseText() -> Bool {
         doorWinner == whichDoorTap
     }
+    
+    private func clearStats() {
+        userSettings.numberOfStayGames = 0
+        userSettings.numberOfSwitchedGames = 0
+        userSettings.numberOfWinsStayGames = 0
+        userSettings.numberOfWinsSwitchedGames = 0
+        
+    }
 }
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
