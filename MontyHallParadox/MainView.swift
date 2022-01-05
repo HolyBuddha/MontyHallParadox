@@ -12,6 +12,8 @@ struct MainView: View {
     // Добавь функционал кнопке помощи
     // добавь userDefaults
     
+    @ObservedObject var userSettings = UserSettings()
+    
     @State private var whichDoorTap = 0
     @State private var firstDoorCount = 0
     @State private var secondDoorCount = 0
@@ -27,13 +29,7 @@ struct MainView: View {
     @State private var alertTapButton = false
     
     @State private var okButtonScore = 0
-    
-    @State private var numberOfStayGames = UserDefaults.standard.integer(forKey: "numberOfStayGames")
-    @State private var numberOfSwitchedGames = UserDefaults.standard.integer(forKey: "numberOfSwitchedGames")
-    @State private var numberOfWinsStayGames = UserDefaults.standard.integer(forKey: "numberOfWinsStayGames")
-    @State private var numberOfWinsSwitchedGames = UserDefaults.standard.integer(forKey: "numberOfWinsSwitchedGames")
-    
-    
+
     var body: some View {
         NavigationView{
             ZStack {
@@ -54,7 +50,10 @@ struct MainView: View {
                         .multilineTextAlignment(.center)
                         .toolbar {
                             Button(action: {
-                                
+                                userSettings.numberOfStayGames = 0
+                                userSettings.numberOfSwitchedGames = 0
+                                userSettings.numberOfWinsStayGames = 0
+                                userSettings.numberOfWinsSwitchedGames = 0
                             }, label: {
                                 Image(systemName: "questionmark.circle")
                                     .foregroundColor(.white)
@@ -129,14 +128,10 @@ struct MainView: View {
                         .fullScreenCover(isPresented: $alertTapButton) {
                             ResultView(
                                 result: winLoseText(),
-                                MainView: self,
-                                numberOfStayGames: numberOfStayGames,
-                                numberOfSwitchedGames: numberOfSwitchedGames,
-                                numberOfWinsStayGames: numberOfWinsStayGames,
-                                numberOfWinsSwitchedGames: numberOfWinsSwitchedGames
+                                mainView: self
                             )
                         }
-                    //Text("\(doorWinner)")
+                    Text("\(doorWinner)")
                         .foregroundColor(.white)
                 }
             }
@@ -194,14 +189,14 @@ extension MainView {
     }
     
     private func gamesCount() {
-        if firstDoorCount == secondDoorCount { numberOfStayGames += 1 }
-        else { numberOfSwitchedGames += 1 }
+        if firstDoorCount == secondDoorCount { userSettings.numberOfStayGames += 1 }
+        else { userSettings.numberOfSwitchedGames += 1 }
     }
     
     private func gamesWinsCount() {
-        if firstDoorCount == secondDoorCount && doorWinner == whichDoorTap { numberOfWinsStayGames += 1
+        if firstDoorCount == secondDoorCount && doorWinner == whichDoorTap { userSettings.numberOfWinsStayGames += 1
         }
-        else if firstDoorCount != secondDoorCount && doorWinner == whichDoorTap { numberOfWinsSwitchedGames += 1 }
+        else if firstDoorCount != secondDoorCount && doorWinner == whichDoorTap { userSettings.numberOfWinsSwitchedGames += 1 }
     }
     
     private func winLoseText() -> Bool {

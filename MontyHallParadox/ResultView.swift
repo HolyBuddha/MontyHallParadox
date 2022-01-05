@@ -9,15 +9,11 @@ import SwiftUI
 
 struct ResultView: View {
     
+    @ObservedObject var userSettings = UserSettings()
+    
     let result: Bool
-    let MainView: MainView
-    
-    let numberOfStayGames: Int
-    let numberOfSwitchedGames: Int
-    let numberOfWinsStayGames: Int
-    let numberOfWinsSwitchedGames: Int
-    
-    
+    let mainView: MainView
+
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         Color.blue
@@ -30,14 +26,14 @@ struct ResultView: View {
                         .padding(.bottom, 50)
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Stay stats")
-                        Text("Number of games: \(numberOfStayGames)")
-                        Text("Number of win games: \(numberOfWinsStayGames)")
+                        Text("Number of games: \(userSettings.numberOfStayGames)")
+                        Text("Number of win games: \(userSettings.numberOfWinsStayGames)")
                         Text("Winning Percentage: \(countPercentOfStayGamesWins())%")
                     }
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Switched stats")
-                        Text("Number of games: \(numberOfSwitchedGames)")
-                        Text("Number of win games: \(numberOfWinsSwitchedGames)")
+                        Text("Number of games: \(userSettings.numberOfSwitchedGames)")
+                        Text("Number of win games: \(userSettings.numberOfWinsSwitchedGames)")
                         Text("Winning Percentage: \(countPercentOfSwitchedGamesWins())%")
                     }
                 }
@@ -47,8 +43,8 @@ struct ResultView: View {
                     .padding(.bottom, 100)
             )
             .overlay(alignment: .bottom) {
-                Button("Dismiss") { presentationMode.wrappedValue.dismiss(); MainView.shuffleTheAnswers()
-                    saveStatsToUserDefaults();
+                Button("Dismiss") { presentationMode.wrappedValue.dismiss(); mainView.shuffleTheAnswers()
+                    //saveStatsToUserDefaults();
                 }
                 .frame(width: 80, height: 30)
                 .foregroundColor(.white)
@@ -66,30 +62,23 @@ extension ResultView {
     
     private func countPercentOfStayGamesWins() -> String {
         var result: String
-        if numberOfStayGames != 0 {
-            result = String(format: "%.1f", Double(numberOfWinsStayGames) / Double(numberOfStayGames) * 100)
+        if userSettings.numberOfStayGames != 0 {
+            result = String(format: "%.1f", Double(userSettings.numberOfWinsStayGames) / Double(userSettings.numberOfStayGames) * 100)
         } else { result = "0" }
         return result
     }
     
     private func countPercentOfSwitchedGamesWins() -> String {
         var result: String
-        if numberOfSwitchedGames != 0 {
-            result = String(format: "%.1f", Double(numberOfWinsSwitchedGames) / Double(numberOfSwitchedGames) * 100)
+        if userSettings.numberOfSwitchedGames != 0 {
+            result = String(format: "%.1f", Double(userSettings.numberOfWinsSwitchedGames) / Double(userSettings.numberOfSwitchedGames) * 100)
         } else { result = "0" }
         return result
-    }
-    
-    private func saveStatsToUserDefaults() {
-        UserDefaults.standard.set(numberOfStayGames, forKey: "numberOfStayGames")
-        UserDefaults.standard.set(numberOfSwitchedGames, forKey: "numberOfSwitchedGames")
-        UserDefaults.standard.set(numberOfWinsStayGames, forKey: "numberOfWinsStayGames")
-        UserDefaults.standard.set(numberOfWinsSwitchedGames, forKey: "numberOfWinsSwitchedGames")
     }
     
 }
 struct ResultView_Previews: PreviewProvider {
     static var previews: some View {
-        ResultView(result: true, MainView: MainView(), numberOfStayGames: 3, numberOfSwitchedGames: 5, numberOfWinsStayGames: 1, numberOfWinsSwitchedGames: 1)
+        ResultView(result: true, mainView: MainView())
     }
 }

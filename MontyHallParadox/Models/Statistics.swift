@@ -7,9 +7,10 @@
 
 import Foundation
 
-struct Statistics {
-    var name: String
-    var numberOfGames: Int
-    var percentOfWins: Double
+class Statistics {
+    var numberOfStayGames = 0
+    var numberOfSwitchedGames = 0
+    var numberOfWinsStayGames = 0
+    var numberOfWinsSwitchedGames = 0
 }
 

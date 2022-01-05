@@ -6,15 +6,43 @@
 //
 
 import Foundation
+import Combine
 
-var statistics: Statistics!
 
-class DataManager {
+class UserSettings: ObservableObject {
     
-    static let shared = DataManager()
+    let statistics = Statistics()
     
-    let randomDoorWinner = [true, false, false]
+    @Published var numberOfStayGames = 0 {
+        didSet {
+            UserDefaults.standard.set(numberOfStayGames, forKey: "numberOfStayGames")
+        }
+    }
     
-    private init() {}
+    @Published var numberOfSwitchedGames = 0 {
+        didSet {
+            UserDefaults.standard.set(numberOfSwitchedGames, forKey: "numberOfSwitchedGames")
+        }
+    }
     
+    @Published var numberOfWinsStayGames = 0 {
+        didSet {
+            UserDefaults.standard.set(numberOfWinsStayGames, forKey: "numberOfWinsStayGames")
+        }
+    }
+    
+    @Published var numberOfWinsSwitchedGames = 0 {
+        didSet {
+            UserDefaults.standard.set(numberOfWinsSwitchedGames, forKey: "numberOfWinsSwitchedGames")
+        }
+    }
+    
+    
+    init() {
+        self.numberOfStayGames = UserDefaults.standard.integer(forKey: "numberOfStayGames")
+        self.numberOfSwitchedGames = UserDefaults.standard.integer(forKey: "numberOfSwitchedGames")
+        self.numberOfWinsStayGames = UserDefaults.standard.integer(forKey: "numberOfWinsStayGames")
+        self.numberOfWinsSwitchedGames = UserDefaults.standard.integer(forKey: "numberOfWinsSwitchedGames")
+    }
 }
+
