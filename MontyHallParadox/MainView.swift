@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct MainView: View {
+    
     // Добавь анимацию на двери при открытии
-    // Добавь функционал кнопке помощи
+    // Добавь функционал кнопке помощи (доделай кнопки, не все нажимаются)
     // Добавь кнопку настроек ( сброс статистики, история приложения)
     // подумай как внедрить в userDefaults модель Statistics
     
@@ -35,9 +36,9 @@ struct MainView: View {
         NavigationView{
             ZStack {
                 LinearGradient(
-                    gradient: Gradient(colors: [.green, .blue]),
-                    startPoint: UnitPoint(x: 0, y: -1),
-                    endPoint: UnitPoint(x: -1, y: 0)
+                    gradient: Gradient(colors: [.red, .blue]),
+                    startPoint: .bottom,
+                    endPoint: .top
                 )
                     .ignoresSafeArea()
                     .opacity(0.5)
@@ -51,24 +52,14 @@ struct MainView: View {
                         .multilineTextAlignment(.center)
                         .toolbar {
                             ToolbarItem(placement: .navigationBarTrailing) {
-                                Button(action: {
-                                    alertTapButton.toggle()
-                                }, label: {
-                                    Text("Stats")
-                                        .foregroundColor(.white)
-                                        .bold()
-                                        .padding()
-                                }
-                                )
-                            }
-                            ToolbarItem(placement: .navigationBarLeading) {
-                                Button(action: {
-                                    clearStats()
-                                }, label: {
-                                    Image(systemName: "gearshape")
-                                        .foregroundColor(.white)
-                                        .padding()
-                                }
+                                DropDownMenu(
+                                    actionFirstButton: {},
+                                    actionSecondButton: {},
+                                    actionThirdButton: { alertTapButton.toggle() },
+                                    textFirstButton: "1",
+                                    textSecondButton: "2",
+                                    textThirdButton: "Stats",
+                                    buttonColor: .white
                                 )
                             }
                         }
@@ -138,14 +129,13 @@ struct MainView: View {
                                 mainView: self
                             )
                         }
-                    //Text("\(doorWinner)")
+                    Text("\(doorWinner)")
                         .foregroundColor(.white)
                 }
             }
         }
     }
 }
-
 extension MainView {
     private func  firstDoorTapped() {
         whichDoorTap = 1

@@ -44,7 +44,6 @@ struct ResultView: View {
             )
             .overlay(alignment: .bottom) {
                 Button("Dismiss") { presentationMode.wrappedValue.dismiss(); mainView.shuffleTheAnswers()
-                    //saveStatsToUserDefaults();
                 }
                 .frame(width: 80, height: 30)
                 .foregroundColor(.white)
@@ -77,6 +76,7 @@ extension ResultView {
     }
     
 }
+
 struct ResultView_Previews: PreviewProvider {
     static var previews: some View {
         ResultView(result: true, mainView: MainView())

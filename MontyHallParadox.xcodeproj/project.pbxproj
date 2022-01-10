@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		125F03D5278CEA1900D58083 /* DropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125F03D4278CEA1900D58083 /* DropDownMenu.swift */; };
 		1273587627502C43004BD467 /* MontyHallParadoxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1273587527502C43004BD467 /* MontyHallParadoxApp.swift */; };
 		1273587827502C43004BD467 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1273587727502C43004BD467 /* MainView.swift */; };
 		1273587A27502C45004BD467 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1273587927502C45004BD467 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		125F03D4278CEA1900D58083 /* DropDownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMenu.swift; sourceTree = "<group>"; };
 		1273587227502C43004BD467 /* MontyHallParadox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MontyHallParadox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1273587527502C43004BD467 /* MontyHallParadoxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontyHallParadoxApp.swift; sourceTree = "<group>"; };
 		1273587727502C43004BD467 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				1273587727502C43004BD467 /* MainView.swift */,
 				1273588327502D1A004BD467 /* ButtonLabel.swift */,
 				12C850382754216600E7921B /* ResultView.swift */,
+				125F03D4278CEA1900D58083 /* DropDownMenu.swift */,
 				12FC091127596E8700016577 /* UserSettings.swift */,
 				127A47CA276FCDA400FDD143 /* Models */,
 				1273587927502C45004BD467 /* Assets.xcassets */,
@@ -161,6 +164,7 @@
 				1273587827502C43004BD467 /* MainView.swift in Sources */,
 				12FC091227596E8700016577 /* UserSettings.swift in Sources */,
 				127A47C9276FCB2E00FDD143 /* Statistics.swift in Sources */,
+				125F03D5278CEA1900D58083 /* DropDownMenu.swift in Sources */,
 				12C850392754216600E7921B /* ResultView.swift in Sources */,
 				1273587627502C43004BD467 /* MontyHallParadoxApp.swift in Sources */,
 			);

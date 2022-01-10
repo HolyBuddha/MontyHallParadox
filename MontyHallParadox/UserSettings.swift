@@ -44,5 +44,12 @@ class UserSettings: ObservableObject {
         self.numberOfWinsStayGames = UserDefaults.standard.integer(forKey: "numberOfWinsStayGames")
         self.numberOfWinsSwitchedGames = UserDefaults.standard.integer(forKey: "numberOfWinsSwitchedGames")
     }
+    
+    func clearstats() {
+        numberOfStayGames = 0
+        numberOfSwitchedGames = 0
+        numberOfWinsStayGames = 0
+        numberOfWinsSwitchedGames = 0
+    }
 }
 
