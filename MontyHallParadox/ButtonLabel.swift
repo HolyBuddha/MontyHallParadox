@@ -47,11 +47,16 @@ struct ButtonLabel: View {
                             .font(.title)
                             .bold()
                             .shadow(radius: 70)
-                        
                     }
                 }
             }
         }
+//        .onTapGesture {
+//            buttonTapped.toggle()
+//        }
+//        .rotation3DEffect(.degrees(buttonTapped ? 360 : 0), axis: (x: 0, y: 1, z: 0))
+        //.scaleEffect(buttonTapped ? 1.1 : 1)
+//        .rotation3DEffect(.degrees(buttonTapped ? 360 : 0), axis: (x: 0, y: 1, z: 0), anchor: .zero, anchorZ: 1, perspective: 0)
         .animation(.default, value: buttonTapped)
     }
 }

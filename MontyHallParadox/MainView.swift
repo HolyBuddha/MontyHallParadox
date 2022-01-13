@@ -10,8 +10,8 @@ import SwiftUI
 struct MainView: View {
     
     // Добавь анимацию на двери при открытии
-    // Добавь функционал кнопке помощи (доделай кнопки, не все нажимаются)
-    // Добавь кнопку настроек ( сброс статистики, история приложения)
+    // Удали DropDownMenu в случае необходиомсти
+    // Добавь кнопку сброса статистики на result view
     // подумай как внедрить в userDefaults модель Statistics
     
     @ObservedObject var userSettings = UserSettings()
@@ -33,7 +33,7 @@ struct MainView: View {
     @State private var okButtonScore = 0
     
     var body: some View {
-        NavigationView{
+        NavigationView {
             ZStack {
                 LinearGradient(
                     gradient: Gradient(colors: [.red, .blue]),
@@ -52,24 +52,32 @@ struct MainView: View {
                         .multilineTextAlignment(.center)
                         .toolbar {
                             ToolbarItem(placement: .navigationBarTrailing) {
-                                DropDownMenu(
+                                DropMenuForNavigationBar(
                                     actionFirstButton: {},
                                     actionSecondButton: {},
-                                    actionThirdButton: { alertTapButton.toggle() },
-                                    textFirstButton: "1",
-                                    textSecondButton: "2",
-                                    textThirdButton: "Stats",
+                                    actionThirdButton: {},
+                                    textFirstButton: "Info",
+                                    textSecondButton: "Stats",
+                                    textThirdButton: "Credits",
                                     buttonColor: .white
                                 )
+                               
+//                                DropDownMenu(
+//                                    actionFirstButton: {},
+//                                    actionSecondButton: {},
+//                                    actionThirdButton: { alertTapButton.toggle() },
+//                                    textFirstButton: "1",
+//                                    textSecondButton: "2",
+//                                    textThirdButton: "Stats",
+//                                    buttonColor: .white
+//                                )
                             }
                         }
                     HStack(spacing: 30) {
                         Spacer()
                         ButtonLabel(
                             action: {
-                                withAnimation(.default) {
                                     firstDoorTapped();
-                                }
                             },
                             strokeColor: whichDoorTap == 1 ? .red : .white,
                             doorNumber: 1,
@@ -79,9 +87,7 @@ struct MainView: View {
                         
                         ButtonLabel(
                             action: {
-                                withAnimation(.default) {
                                     secondDoorTapped();
-                                }
                             },
                             strokeColor: whichDoorTap == 2 ? .red : .white,
                             doorNumber: 2,
@@ -91,9 +97,7 @@ struct MainView: View {
                         
                         ButtonLabel(
                             action: {
-                                withAnimation(.default) {
                                     thirdDoorTapped();
-                                }
                             },
                             strokeColor: whichDoorTap == 3 ? .red : .white,
                             doorNumber: 3,
@@ -136,12 +140,13 @@ struct MainView: View {
         }
     }
 }
+
 extension MainView {
     private func  firstDoorTapped() {
         whichDoorTap = 1
         doorTapButton = true
     }
-    
+  
     private func secondDoorTapped() {
         whichDoorTap = 2
         doorTapButton = true
@@ -200,13 +205,14 @@ extension MainView {
         doorWinner == whichDoorTap
     }
     
-    private func clearStats() {
-        userSettings.numberOfStayGames = 0
-        userSettings.numberOfSwitchedGames = 0
-        userSettings.numberOfWinsStayGames = 0
-        userSettings.numberOfWinsSwitchedGames = 0
-        
-    }
+//    private func clearStats() {
+//        userSettings.numberOfStayGames = 0
+//        userSettings.numberOfSwitchedGames = 0
+//        userSettings.numberOfWinsStayGames = 0
+//        userSettings.numberOfWinsSwitchedGames = 0
+//
+//    }
+
 }
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

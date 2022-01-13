@@ -27,16 +27,17 @@ struct DropDownMenu: View {
             Button(
                 action: { expand.toggle() },
                 label: {
-                    Image(systemName: "questionmark.circle.fill")
-                        .frame(width: 50, height: 50)
+                    Image(systemName: "chevron.down")
+                        //.frame(height: expand ? 40 : 10)
                         .foregroundColor(buttonColor)
                         .font(.headline)
+                        .padding()
                 }
             )
                     .opacity(expand ? 0 : 1)
                 
             if expand {
-                VStack(){
+                VStack(alignment: .center, spacing: 10){
                     Button(textFirstButton, action: { self.expand.toggle(); actionFirstButton() })
                     Button(textSecondButton, action: { self.expand.toggle(); actionSecondButton() })
                     Button(textThirdButton, action: { self.expand.toggle(); actionThirdButton() })

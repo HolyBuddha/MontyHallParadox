@@ -36,7 +36,7 @@ class UserSettings: ObservableObject {
             UserDefaults.standard.set(numberOfWinsSwitchedGames, forKey: "numberOfWinsSwitchedGames")
         }
     }
-    
+
     
     init() {
         self.numberOfStayGames = UserDefaults.standard.integer(forKey: "numberOfStayGames")
