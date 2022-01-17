@@ -12,10 +12,12 @@ struct DropMenuForNavigationBar: View {
     let actionFirstButton: () -> Void
     let actionSecondButton: () -> Void
     let actionThirdButton: () -> Void
+    let actionFourthButton: () -> Void
     
     let textFirstButton: String
     let textSecondButton: String
     let textThirdButton: String
+    let textFourthButton: String
     
     let buttonColor: Color
     
@@ -25,6 +27,7 @@ struct DropMenuForNavigationBar: View {
                 Button(textFirstButton, action: actionFirstButton)
                 Button(textSecondButton, action: actionSecondButton)
                 Button(textThirdButton, action: actionThirdButton)
+                Button(textFourthButton, action: actionFourthButton)
             }
         label: {
             Image(systemName: "ellipsis.circle")
@@ -32,11 +35,12 @@ struct DropMenuForNavigationBar: View {
         }
         .foregroundColor(buttonColor)
         .padding(.trailing)
+        .id(UUID())
     }
 }
 
 struct DropMenuForNavigationBar_Previews: PreviewProvider {
     static var previews: some View {
-        DropMenuForNavigationBar(actionFirstButton: {}, actionSecondButton: {}, actionThirdButton: {}, textFirstButton: "1", textSecondButton: "2", textThirdButton: "3", buttonColor: .orange)
+        DropMenuForNavigationBar(actionFirstButton: {}, actionSecondButton: {}, actionThirdButton: {}, actionFourthButton: {}, textFirstButton: "1", textSecondButton: "2", textThirdButton: "3", textFourthButton: "4", buttonColor: .orange)
     }
 }

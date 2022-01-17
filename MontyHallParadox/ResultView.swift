@@ -16,22 +16,30 @@ struct ResultView: View {
 
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
-        Color.blue
+        LinearGradient(
+            gradient: Gradient(colors: result ? [.green, .blue] : [.purple, .blue]),
+            startPoint: .top,
+            endPoint: .bottom
+        )
             .ignoresSafeArea()
+            .opacity(0.5
+            )
             .overlay(
                 Group{
                 VStack(alignment: .leading, spacing: 40) {
                     Text(showMainText())
-                        .font(.largeTitle)
-                        .padding(.bottom, 50)
+                        .font(.title)
+                        .padding(.bottom, 10)
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Stay stats")
+                            .underline()
                         Text("Number of games: \(userSettings.numberOfStayGames)")
                         Text("Number of win games: \(userSettings.numberOfWinsStayGames)")
                         Text("Winning Percentage: \(countPercentOfStayGamesWins())%")
                     }
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Switched stats")
+                            .underline()
                         Text("Number of games: \(userSettings.numberOfSwitchedGames)")
                         Text("Number of win games: \(userSettings.numberOfWinsSwitchedGames)")
                         Text("Winning Percentage: \(countPercentOfSwitchedGamesWins())%")
@@ -43,13 +51,15 @@ struct ResultView: View {
                     .padding(.bottom, 100)
             )
             .overlay(alignment: .bottom) {
-                Button("Dismiss") { presentationMode.wrappedValue.dismiss(); mainView.shuffleTheAnswers()
+                Button("Dismiss") {
+                    presentationMode.wrappedValue.dismiss();
+                    mainView.shuffleTheAnswers()
                 }
-                .frame(width: 80, height: 30)
+                .frame(width: 100, height: 40)
                 .foregroundColor(.white)
                 .background(.yellow)
                 .cornerRadius(20)
-                .padding()
+                .padding(70)
             }
     }
 }

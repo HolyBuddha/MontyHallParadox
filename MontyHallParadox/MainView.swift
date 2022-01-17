@@ -11,6 +11,7 @@ struct MainView: View {
     
     // Добавь анимацию на двери при открытии
     // Удали DropDownMenu в случае необходиомсти
+    // Сделай что то с кнопкой статс
     // Добавь кнопку сброса статистики на result view
     // подумай как внедрить в userDefaults модель Statistics
     
@@ -54,11 +55,15 @@ struct MainView: View {
                             ToolbarItem(placement: .navigationBarTrailing) {
                                 DropMenuForNavigationBar(
                                     actionFirstButton: {},
-                                    actionSecondButton: {},
+                                    actionSecondButton: {
+                                        userSettings.clearstats()
+                                    },
                                     actionThirdButton: {},
-                                    textFirstButton: "Info",
-                                    textSecondButton: "Stats",
-                                    textThirdButton: "Credits",
+                                    actionFourthButton: {},
+                                    textFirstButton: "Play",
+                                    textSecondButton: "Clear stats",
+                                    textThirdButton: "Help",
+                                    textFourthButton: "About",
                                     buttonColor: .white
                                 )
                                
@@ -204,14 +209,6 @@ extension MainView {
     private func winLoseText() -> Bool {
         doorWinner == whichDoorTap
     }
-    
-//    private func clearStats() {
-//        userSettings.numberOfStayGames = 0
-//        userSettings.numberOfSwitchedGames = 0
-//        userSettings.numberOfWinsStayGames = 0
-//        userSettings.numberOfWinsSwitchedGames = 0
-//
-//    }
 
 }
 struct ContentView_Previews: PreviewProvider {
