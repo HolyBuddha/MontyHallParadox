@@ -18,12 +18,11 @@ struct ResultView: View {
     var body: some View {
         LinearGradient(
             gradient: Gradient(colors: result ? [.green, .blue] : [.purple, .blue]),
-            startPoint: .top,
-            endPoint: .bottom
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
         )
             .ignoresSafeArea()
-            .opacity(0.5
-            )
+            .opacity(0.8)
             .overlay(
                 Group{
                 VStack(alignment: .leading, spacing: 40) {

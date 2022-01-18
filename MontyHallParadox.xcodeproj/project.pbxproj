@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12078E6527975B5700CD0306 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12078E6427975B5700CD0306 /* LoadingView.swift */; };
+		12078E68279765CC00CD0306 /* StarterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12078E67279765CC00CD0306 /* StarterView.swift */; };
 		125F03D5278CEA1900D58083 /* DropDownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125F03D4278CEA1900D58083 /* DropDownMenu.swift */; };
 		1273587627502C43004BD467 /* MontyHallParadoxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1273587527502C43004BD467 /* MontyHallParadoxApp.swift */; };
 		1273587827502C43004BD467 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1273587727502C43004BD467 /* MainView.swift */; };
 		1273587A27502C45004BD467 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1273587927502C45004BD467 /* Assets.xcassets */; };
 		1273587D27502C45004BD467 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1273587C27502C45004BD467 /* Preview Assets.xcassets */; };
-		1273588427502D1A004BD467 /* ButtonLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1273588327502D1A004BD467 /* ButtonLabel.swift */; };
+		1273588427502D1A004BD467 /* DoorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1273588327502D1A004BD467 /* DoorButton.swift */; };
 		127A47C9276FCB2E00FDD143 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127A47C8276FCB2E00FDD143 /* Statistics.swift */; };
 		12C850392754216600E7921B /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C850382754216600E7921B /* ResultView.swift */; };
 		12E7AC9A2790E32600ED895F /* DropMenuForNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E7AC992790E32600ED895F /* DropMenuForNavigationBar.swift */; };
@@ -20,13 +22,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12078E6427975B5700CD0306 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		12078E67279765CC00CD0306 /* StarterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterView.swift; sourceTree = "<group>"; };
 		125F03D4278CEA1900D58083 /* DropDownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMenu.swift; sourceTree = "<group>"; };
 		1273587227502C43004BD467 /* MontyHallParadox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MontyHallParadox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1273587527502C43004BD467 /* MontyHallParadoxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MontyHallParadoxApp.swift; sourceTree = "<group>"; };
 		1273587727502C43004BD467 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1273587927502C45004BD467 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1273587C27502C45004BD467 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		1273588327502D1A004BD467 /* ButtonLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLabel.swift; sourceTree = "<group>"; };
+		1273588327502D1A004BD467 /* DoorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorButton.swift; sourceTree = "<group>"; };
 		127A47C8276FCB2E00FDD143 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		12C850382754216600E7921B /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		12E7AC992790E32600ED895F /* DropMenuForNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropMenuForNavigationBar.swift; sourceTree = "<group>"; };
@@ -44,6 +48,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12078E6627975D3000CD0306 /* VIews */ = {
+			isa = PBXGroup;
+			children = (
+				12078E6427975B5700CD0306 /* LoadingView.swift */,
+				12078E67279765CC00CD0306 /* StarterView.swift */,
+				1273587727502C43004BD467 /* MainView.swift */,
+				12C850382754216600E7921B /* ResultView.swift */,
+			);
+			path = VIews;
+			sourceTree = "<group>";
+		};
 		1273586927502C43004BD467 = {
 			isa = PBXGroup;
 			children = (
@@ -64,9 +79,8 @@
 			isa = PBXGroup;
 			children = (
 				1273587527502C43004BD467 /* MontyHallParadoxApp.swift */,
-				1273587727502C43004BD467 /* MainView.swift */,
-				1273588327502D1A004BD467 /* ButtonLabel.swift */,
-				12C850382754216600E7921B /* ResultView.swift */,
+				1273588327502D1A004BD467 /* DoorButton.swift */,
+				12078E6627975D3000CD0306 /* VIews */,
 				125F03D4278CEA1900D58083 /* DropDownMenu.swift */,
 				12E7AC992790E32600ED895F /* DropMenuForNavigationBar.swift */,
 				12FC091127596E8700016577 /* UserSettings.swift */,
@@ -163,14 +177,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1273588427502D1A004BD467 /* ButtonLabel.swift in Sources */,
+				1273588427502D1A004BD467 /* DoorButton.swift in Sources */,
 				1273587827502C43004BD467 /* MainView.swift in Sources */,
 				12FC091227596E8700016577 /* UserSettings.swift in Sources */,
 				127A47C9276FCB2E00FDD143 /* Statistics.swift in Sources */,
 				125F03D5278CEA1900D58083 /* DropDownMenu.swift in Sources */,
 				12C850392754216600E7921B /* ResultView.swift in Sources */,
+				12078E68279765CC00CD0306 /* StarterView.swift in Sources */,
 				1273587627502C43004BD467 /* MontyHallParadoxApp.swift in Sources */,
 				12E7AC9A2790E32600ED895F /* DropMenuForNavigationBar.swift in Sources */,
+				12078E6527975B5700CD0306 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

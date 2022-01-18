@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView: View {
     
     // Добавь анимацию на двери при открытии
-    // Удали DropDownMenu в случае необходиомсти
+    // Сделай так чтобы коза не менялась при втором нажатии кнопки ОК
     // Сделай что то с кнопкой статс
     // Добавь кнопку сброса статистики на result view
     // подумай как внедрить в userDefaults модель Statistics
@@ -42,7 +42,7 @@ struct MainView: View {
                     endPoint: .top
                 )
                     .ignoresSafeArea()
-                    .opacity(0.5)
+                    .opacity(0.8)
                 VStack(alignment: .center){
                     Text(
                         changeMainText())
@@ -51,6 +51,7 @@ struct MainView: View {
                         .foregroundColor(.white)
                         .frame(width: 200, height: 200)
                         .multilineTextAlignment(.center)
+                        .shadow(radius: 70)
                         .toolbar {
                             ToolbarItem(placement: .navigationBarTrailing) {
                                 DropMenuForNavigationBar(
@@ -66,52 +67,46 @@ struct MainView: View {
                                     textFourthButton: "About",
                                     buttonColor: .white
                                 )
-                               
-//                                DropDownMenu(
-//                                    actionFirstButton: {},
-//                                    actionSecondButton: {},
-//                                    actionThirdButton: { alertTapButton.toggle() },
-//                                    textFirstButton: "1",
-//                                    textSecondButton: "2",
-//                                    textThirdButton: "Stats",
-//                                    buttonColor: .white
-//                                )
+
                             }
                         }
-                    HStack(spacing: 30) {
-                        Spacer()
-                        ButtonLabel(
+                    HStack(alignment: .center, spacing: 30) {
+                        DoorButton(
                             action: {
                                     firstDoorTapped();
                             },
                             strokeColor: whichDoorTap == 1 ? .red : .white,
-                            doorNumber: 1,
-                            doorColor: doorLooser == 1 ? .red : .orange
+                            doorNumber: doorLooser == 1 ? "" : "1",
+                            doorColor: doorLooser == 1 ? .red : .orange,
+                            showGoat: doorLooser == 1 ? true : false
                         )
                             .disabled(doorLooser == 1)
                         
-                        ButtonLabel(
+                        DoorButton(
                             action: {
                                     secondDoorTapped();
                             },
                             strokeColor: whichDoorTap == 2 ? .red : .white,
-                            doorNumber: 2,
-                            doorColor: doorLooser == 2 ? .red : .orange
+                            doorNumber: doorLooser == 2 ? "" : "2",
+                            doorColor: doorLooser == 2 ? .red : .orange,
+                            showGoat: doorLooser == 2 ? true : false
                         )
                             .disabled(doorLooser == 2)
                         
-                        ButtonLabel(
+                        DoorButton(
                             action: {
                                     thirdDoorTapped();
                             },
                             strokeColor: whichDoorTap == 3 ? .red : .white,
-                            doorNumber: 3,
-                            doorColor: doorLooser == 3 ? .red : .orange
+                            doorNumber: doorLooser == 3 ? "" : "3",
+                            doorColor: doorLooser == 3 ? .red : .orange,
+                            showGoat: doorLooser == 3 ? true : false
                         )
                             .disabled(doorLooser == 3)
                     }
                     .frame(alignment: .center)
-                    Spacer()
+                    .padding(.leading, 25)
+                    
                     Button("Submit", action: {
                         okButtonTapped();
                         doorTapped()
@@ -128,7 +123,7 @@ struct MainView: View {
                         )
                         .cornerRadius(20)
                         .opacity(doorTapButton ? 1 : 0)
-                        .padding()
+                        .padding(.bottom, 40)
                         .alert(result, isPresented: $okTapButton) {
                             Button("OK") { alertTapButton.toggle() }
                         }
@@ -209,7 +204,6 @@ extension MainView {
     private func winLoseText() -> Bool {
         doorWinner == whichDoorTap
     }
-
 }
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
