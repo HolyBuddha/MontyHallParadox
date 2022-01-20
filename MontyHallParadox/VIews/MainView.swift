@@ -10,7 +10,9 @@ import SwiftUI
 struct MainView: View {
     
     // Добавь анимацию на двери при открытии
-    // Сделай так чтобы коза не менялась при втором нажатии кнопки ОК
+    // Закончи перенос логики в DoorButton, сделай свойства whichDoorTap, okTapButton, doorWinner и doorLooser observable
+    // доделай strokeColor
+    // удали лишний код
     // Сделай что то с кнопкой статс
     // Добавь кнопку сброса статистики на result view
     // подумай как внедрить в userDefaults модель Statistics
@@ -72,35 +74,30 @@ struct MainView: View {
                         }
                     HStack(alignment: .center, spacing: 30) {
                         DoorButton(
-                            action: {
-                                    firstDoorTapped();
-                            },
-                            strokeColor: whichDoorTap == 1 ? .red : .white,
-                            doorNumber: doorLooser == 1 ? "" : "1",
-                            doorColor: doorLooser == 1 ? .red : .orange,
-                            showGoat: doorLooser == 1 ? true : false
+                            action: { firstDoorTapped() },
+                                   doorNumber: 1,
+                                   whichDoorTap: whichDoorTap,
+                                   doorWinner: doorWinner,
+                                   okButtonScore: okButtonScore,
+                                   doorLooser: doorLooser
                         )
                             .disabled(doorLooser == 1)
                         
-                        DoorButton(
-                            action: {
-                                    secondDoorTapped();
-                            },
-                            strokeColor: whichDoorTap == 2 ? .red : .white,
-                            doorNumber: doorLooser == 2 ? "" : "2",
-                            doorColor: doorLooser == 2 ? .red : .orange,
-                            showGoat: doorLooser == 2 ? true : false
+                        DoorButton(action: { secondDoorTapped() },
+                            doorNumber: 2,
+                            whichDoorTap: whichDoorTap,
+                            doorWinner: doorWinner,
+                            okButtonScore: okButtonScore,
+                            doorLooser: doorLooser
                         )
                             .disabled(doorLooser == 2)
                         
-                        DoorButton(
-                            action: {
-                                    thirdDoorTapped();
-                            },
-                            strokeColor: whichDoorTap == 3 ? .red : .white,
-                            doorNumber: doorLooser == 3 ? "" : "3",
-                            doorColor: doorLooser == 3 ? .red : .orange,
-                            showGoat: doorLooser == 3 ? true : false
+                        DoorButton(action: { thirdDoorTapped() },
+                            doorNumber: 3,
+                            whichDoorTap: whichDoorTap,
+                            doorWinner: doorWinner,
+                            okButtonScore: okButtonScore,
+                            doorLooser: doorLooser
                         )
                             .disabled(doorLooser == 3)
                     }
@@ -109,7 +106,7 @@ struct MainView: View {
                     
                     Button("Submit", action: {
                         okButtonTapped();
-                        doorTapped()
+                        //doorTapped()
                     }
                     )
                         .frame(width: 80, height: 40)
@@ -161,11 +158,14 @@ extension MainView {
         okButtonScore += 1
         if okButtonScore == 2 {
             okTapButton.toggle();
-            okButtonScore = 0;
+            //okButtonScore = 0;
             secondDoorCount = whichDoorTap;
             gamesCount();
             gamesWinsCount()
-        } else { firstDoorCount = whichDoorTap }
+        } else {
+            firstDoorCount = whichDoorTap
+            doorTapped()
+        }
     }
     
     func shuffleTheAnswers() {
@@ -173,21 +173,21 @@ extension MainView {
         doorLooser = 0
         firstDoorCount = 0
         secondDoorCount = 0
+        okButtonScore = 0
     }
     
     private func changeMainText() -> String {
         switch okButtonScore {
-        case 1: return "The Door \(doorLooser) is lose. Do you want to change your door?"
-        default:
-            return "Please choose your door"
+        case 0: return "Please choose your door"
+        default: return "The Door \(doorLooser) is lose. Do you want to change your door?"
         }
     }
     private func doorTapped() {
-        switch doorWinner {
-        case 1 : result = "First Door Win"; doorLooser = whichDoorTap == 2 ? 3 : 2
-        case 2 : result = "Second Door Win"; doorLooser = whichDoorTap == 1 ? 3 : 1
-        default: result = "Third Door Win"; doorLooser = whichDoorTap == 1 ? 2 : 1
-        }
+            switch doorWinner {
+            case 1 : result = "First Door Win"; doorLooser = whichDoorTap == 2 ? 3 : 2
+            case 2 : result = "Second Door Win"; doorLooser = whichDoorTap == 1 ? 3 : 1
+            default: result = "Third Door Win"; doorLooser = whichDoorTap == 1 ? 2 : 1
+            }
     }
     
     private func gamesCount() {
@@ -204,6 +204,20 @@ extension MainView {
     private func winLoseText() -> Bool {
         doorWinner == whichDoorTap
     }
+    
+//    private func setDoorColor(_ doorNumber: Int) -> Color {
+//        if doorWinner == doorNumber && whichDoorTap == doorNumber && okButtonScore == 2 { return .green }
+//        else if doorWinner != doorNumber && whichDoorTap == doorNumber && okButtonScore == 2 || doorLooser == doorNumber { return .red }
+//        else { return .orange }
+//    }
+//    
+//    private func showGoat(_ doorNumber: Int) -> Bool {
+//        doorLooser == doorNumber ? true : false
+//    }
+//    
+//    private func showCar(_ doorNumber: Int) -> Bool {
+//        doorWinner == doorNumber || okButtonScore == 2 ? true : false
+//    }
 }
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
