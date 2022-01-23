@@ -9,11 +9,8 @@ import SwiftUI
 
 struct MainView: View {
     
-    // Добавь анимацию на двери при открытии
-    // Закончи перенос логики в DoorButton, сделай свойства whichDoorTap, okTapButton, doorWinner и doorLooser observable
-    // доделай showCar
-    // доделай strokeColor
-    // удали лишний код
+    // Cделай свойства whichDoorTap, okTapButton, doorWinner и doorLooser observable
+    // Подумай над тем чтобы убрать алерт и показывать статистику только по кнопке
     // Сделай что то с кнопкой статс
     // Добавь кнопку сброса статистики на result view
     // подумай как внедрить в userDefaults модель Statistics
@@ -70,35 +67,35 @@ struct MainView: View {
                                     textFourthButton: "About",
                                     buttonColor: .white
                                 )
-
+                                
                             }
                         }
                     HStack(alignment: .center, spacing: 30) {
                         DoorButton(
                             action: { firstDoorTapped() },
-                                   doorNumber: 1,
+                            doorNumber: 1,
+                            whichDoorTap: whichDoorTap,
+                            doorWinner: doorWinner,
+                            okButtonScore: okButtonScore,
+                            doorLooser: doorLooser
+                        )
+                            .disabled(doorLooser == 1)
+                        
+                        DoorButton(action: { secondDoorTapped() },
+                                   doorNumber: 2,
                                    whichDoorTap: whichDoorTap,
                                    doorWinner: doorWinner,
                                    okButtonScore: okButtonScore,
                                    doorLooser: doorLooser
                         )
-                            .disabled(doorLooser == 1)
-                        
-                        DoorButton(action: { secondDoorTapped() },
-                            doorNumber: 2,
-                            whichDoorTap: whichDoorTap,
-                            doorWinner: doorWinner,
-                            okButtonScore: okButtonScore,
-                            doorLooser: doorLooser
-                        )
                             .disabled(doorLooser == 2)
                         
                         DoorButton(action: { thirdDoorTapped() },
-                            doorNumber: 3,
-                            whichDoorTap: whichDoorTap,
-                            doorWinner: doorWinner,
-                            okButtonScore: okButtonScore,
-                            doorLooser: doorLooser
+                                   doorNumber: 3,
+                                   whichDoorTap: whichDoorTap,
+                                   doorWinner: doorWinner,
+                                   okButtonScore: okButtonScore,
+                                   doorLooser: doorLooser
                         )
                             .disabled(doorLooser == 3)
                     }
@@ -131,8 +128,8 @@ struct MainView: View {
                                 mainView: self
                             )
                         }
-//                    Text("\(doorWinner)")
-//                        .foregroundColor(.white)
+                    //                    Text("\(doorWinner)")
+                    //                        .foregroundColor(.white)
                 }
             }
         }
@@ -144,7 +141,7 @@ extension MainView {
         whichDoorTap = 1
         doorTapButton = true
     }
-  
+    
     private func secondDoorTapped() {
         whichDoorTap = 2
         doorTapButton = true
@@ -184,11 +181,11 @@ extension MainView {
         }
     }
     private func doorTapped() {
-            switch doorWinner {
-            case 1 : result = "First Door Win"; doorLooser = whichDoorTap == 2 ? 3 : 2
-            case 2 : result = "Second Door Win"; doorLooser = whichDoorTap == 1 ? 3 : 1
-            default: result = "Third Door Win"; doorLooser = whichDoorTap == 1 ? 2 : 1
-            }
+        switch doorWinner {
+        case 1 : result = "First Door Win"; doorLooser = whichDoorTap == 2 ? 3 : 2
+        case 2 : result = "Second Door Win"; doorLooser = whichDoorTap == 1 ? 3 : 1
+        default: result = "Third Door Win"; doorLooser = whichDoorTap == 1 ? 2 : 1
+        }
     }
     
     private func gamesCount() {

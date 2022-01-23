@@ -10,7 +10,6 @@ import SwiftUI
 struct DoorButton: View {
     
     @State private var buttonTapped = false
-   // @State private var strokeColor: Color = .white
     
     let action: () -> Void
     
@@ -44,6 +43,13 @@ struct DoorButton: View {
                                     .foregroundColor(.white)
                                     .opacity(doorNumber == whichDoorTap ? 1 : 0)
                             )
+                            .rotation3DEffect(
+                                Angle.degrees(
+                                    showGoat() || showCar() ? 360 : 0
+                                ),
+                                axis: (x: 0, y: 1, z: 0)
+                            )
+                            .animation(.linear(duration: 0.5), value: showGoat() || showCar())
                             .padding()
                         Text("\(doorNumber)")
                             .foregroundColor(.black)
@@ -72,28 +78,21 @@ struct DoorButton: View {
     }
     
     private func setDoorColor() -> Color {
-        if showCar() { return .green }
-        else if showGoat() { return .red }
-        else { return .orange}
+        if showCar() { return .green.opacity(0.9) }
+        else if showGoat() { return .red.opacity(0.9) }
+        else { return .orange.opacity(0.9)}
     }
     
     private func changeStrokeColor() -> Bool {
         doorNumber == whichDoorTap
-//        else if showCar() || showGoat() { return .white }
     }
-    
-//    private func changeStrokeColor() -> Color {
-//        if doorNumber == whichDoorTap { return .purple }
-////        else if showCar() || showGoat() { return .white }
-//        else { return .white }
-//    }
     
     private func showGoat() -> Bool {
         if doorLooser == doorNumber { return true }
         else if doorWinner != doorNumber && okButtonScore == 2 { return true }
         else { return false }
     }
-//
+    
     private func showCar() -> Bool {
         doorWinner == doorNumber && okButtonScore == 2
     }
@@ -101,6 +100,6 @@ struct DoorButton: View {
 
 struct ButtonLabel_Previews: PreviewProvider {
     static var previews: some View {
-        DoorButton(action: {}, doorNumber: 1, whichDoorTap: 2, doorWinner: 2, okButtonScore: 1, doorLooser: 3)
+        DoorButton(action: {}, doorNumber: 1, whichDoorTap: 2, doorWinner: 3, okButtonScore: 1, doorLooser: 1)
     }
 }
