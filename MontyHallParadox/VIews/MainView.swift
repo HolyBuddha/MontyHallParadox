@@ -11,6 +11,7 @@ struct MainView: View {
     
     // Добавь анимацию на двери при открытии
     // Закончи перенос логики в DoorButton, сделай свойства whichDoorTap, okTapButton, doorWinner и doorLooser observable
+    // доделай showCar
     // доделай strokeColor
     // удали лишний код
     // Сделай что то с кнопкой статс
@@ -130,8 +131,8 @@ struct MainView: View {
                                 mainView: self
                             )
                         }
-                    Text("\(doorWinner)")
-                        .foregroundColor(.white)
+//                    Text("\(doorWinner)")
+//                        .foregroundColor(.white)
                 }
             }
         }
@@ -158,7 +159,6 @@ extension MainView {
         okButtonScore += 1
         if okButtonScore == 2 {
             okTapButton.toggle();
-            //okButtonScore = 0;
             secondDoorCount = whichDoorTap;
             gamesCount();
             gamesWinsCount()
@@ -179,7 +179,8 @@ extension MainView {
     private func changeMainText() -> String {
         switch okButtonScore {
         case 0: return "Please choose your door"
-        default: return "The Door \(doorLooser) is lose. Do you want to change your door?"
+        case 1: return "The Door \(doorLooser) is lose. Do you want to change your door?"
+        default: return "\(result)"
         }
     }
     private func doorTapped() {
@@ -204,21 +205,8 @@ extension MainView {
     private func winLoseText() -> Bool {
         doorWinner == whichDoorTap
     }
-    
-//    private func setDoorColor(_ doorNumber: Int) -> Color {
-//        if doorWinner == doorNumber && whichDoorTap == doorNumber && okButtonScore == 2 { return .green }
-//        else if doorWinner != doorNumber && whichDoorTap == doorNumber && okButtonScore == 2 || doorLooser == doorNumber { return .red }
-//        else { return .orange }
-//    }
-//    
-//    private func showGoat(_ doorNumber: Int) -> Bool {
-//        doorLooser == doorNumber ? true : false
-//    }
-//    
-//    private func showCar(_ doorNumber: Int) -> Bool {
-//        doorWinner == doorNumber || okButtonScore == 2 ? true : false
-//    }
 }
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()

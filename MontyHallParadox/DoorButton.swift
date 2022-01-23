@@ -10,7 +10,7 @@ import SwiftUI
 struct DoorButton: View {
     
     @State private var buttonTapped = false
-    @State private var strokeColor: Color = .white
+   // @State private var strokeColor: Color = .white
     
     let action: () -> Void
     
@@ -19,11 +19,6 @@ struct DoorButton: View {
     let doorWinner: Int
     let okButtonScore: Int
     let doorLooser: Int
-    
-//    let strokeColor: Color
-//    let doorColor: Color
-//    let showGoat: Bool
-//    let showCar: Bool
     
     var body: some View {
         
@@ -46,26 +41,28 @@ struct DoorButton: View {
                             .overlay(
                                 RoundedRectangle(cornerRadius: 10)
                                     .stroke(lineWidth: 4)
-                                    .foregroundColor(changeStrokeColor())
+                                    .foregroundColor(.white)
+                                    .opacity(doorNumber == whichDoorTap ? 1 : 0)
                             )
                             .padding()
                         Text("\(doorNumber)")
                             .foregroundColor(.black)
                             .font(.title)
                             .bold()
+                            .opacity(showGoat() || showCar() ? 0 : 1)
                             .shadow(radius: 70)
                         Image("goat")
                             .resizable()
                             .scaledToFit()
                             .aspectRatio(2, contentMode: .fit)
-                            .opacity(doorLooser == doorNumber ? 1 : 0)
-                            .animation(.default, value: doorLooser == doorNumber)
+                            .opacity(showGoat() ? 1 : 0)
+                            .animation(.default, value: showGoat())
                         Image(systemName: "car")
                             .resizable()
                             .scaledToFit()
                             .aspectRatio(2.5, contentMode: .fit)
-                            .opacity(doorWinner == doorNumber && okButtonScore == 2 ? 1 : 0)
-                            .animation(.default, value: doorWinner == doorNumber && okButtonScore == 2 ? 1 : 0)
+                            .opacity(showCar() ? 1 : 0)
+                            .animation(.default, value: showCar())
                             .foregroundColor(.black)
                     }
                 }
@@ -75,22 +72,31 @@ struct DoorButton: View {
     }
     
     private func setDoorColor() -> Color {
-        if doorWinner == doorNumber && whichDoorTap == doorNumber && okButtonScore == 2 { return .green }
-        else if doorWinner != doorNumber && whichDoorTap == doorNumber && okButtonScore == 2 || doorLooser == doorNumber { return .red }
-        else { return .orange }
+        if showCar() { return .green }
+        else if showGoat() { return .red }
+        else { return .orange}
     }
     
-    private func changeStrokeColor() -> Color {
-        doorNumber == whichDoorTap ? .red : .white
+    private func changeStrokeColor() -> Bool {
+        doorNumber == whichDoorTap
+//        else if showCar() || showGoat() { return .white }
     }
     
-//    private func showGoat() -> Bool {
-//        doorLooser == doorNumber ? true : false
+//    private func changeStrokeColor() -> Color {
+//        if doorNumber == whichDoorTap { return .purple }
+////        else if showCar() || showGoat() { return .white }
+//        else { return .white }
 //    }
+    
+    private func showGoat() -> Bool {
+        if doorLooser == doorNumber { return true }
+        else if doorWinner != doorNumber && okButtonScore == 2 { return true }
+        else { return false }
+    }
 //
-//    private func showCar() -> Bool {
-//        doorWinner == doorNumber || okButtonScore == 2 ? true : false
-//    }
+    private func showCar() -> Bool {
+        doorWinner == doorNumber && okButtonScore == 2
+    }
 }
 
 struct ButtonLabel_Previews: PreviewProvider {
