@@ -2,7 +2,7 @@
 
 Monty Hall Paradox is a simulation game based on the famous probability problem "The Monty Hall Problem". This app teaches the probability problem by getting experience from playing.
 
-Game Play Instructions -
+# Game Play Instructions -
 The Monty Hall problem is a counter-intuitive statistics puzzle:
 •There are 3 doors, behind which are two goats and a car.
 •You pick a door (call it door 1). You’re hoping for the car of course.
