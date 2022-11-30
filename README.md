@@ -1,4 +1,4 @@
-# MontyHallParadox
+# Monty Hall Paradox 
 
 Monty Hall Paradox is a simulation game based on the famous probability problem "The Monty Hall Problem". This app teaches the probability problem by getting experience from playing.
 
@@ -11,3 +11,4 @@ The Monty Hall problem is a counter-intuitive statistics puzzle:
 <br>Here’s the game: Do you stick with door 1 (original guess) or switch to the other unopened door? Does it matter? Surprisingly, the odds aren’t 50-50. <br>If you switch doors, you’ll win 2/3 times!
 
 <br>Today let’s get an intuition for why a simple game could be so baffling. The game is really about re-evaluating your decisions as new information emerges.
+
