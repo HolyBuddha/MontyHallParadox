@@ -12,3 +12,6 @@ The Monty Hall problem is a counter-intuitive statistics puzzle:
 
 <br>Today let’s get an intuition for why a simple game could be so baffling. The game is really about re-evaluating your decisions as new information emerges.
 
+## Stack
+<br> SwiftUI
+<br> Userdefaults
