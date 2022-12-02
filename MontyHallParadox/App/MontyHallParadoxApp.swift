@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct MontyHallParadoxApp: App {
+    
     var body: some Scene {
         WindowGroup {
             StarterView()

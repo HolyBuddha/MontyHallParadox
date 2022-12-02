@@ -10,8 +10,6 @@ import Combine
 
 class UserSettings: ObservableObject {
     
-    let statistics = Statistics()
-    
     @Published var numberOfStayGames = 0 {
         didSet {
             UserDefaults.standard.set(numberOfStayGames, forKey: "numberOfStayGames")

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StarterView: View {
     
-    @State private var isLoading = false
+    @State private var isLoading = true
     
     var body: some View {
         Group {
@@ -27,7 +27,6 @@ struct StarterView_Previews: PreviewProvider {
 
 extension StarterView {
     private func fakeLoading() {
-        isLoading = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             isLoading = false
         }

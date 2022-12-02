@@ -9,12 +9,6 @@ import SwiftUI
 
 struct MainView: View {
     
-    // Cделай свойства whichDoorTap, okTapButton, doorWinner и doorLooser observable
-    // Подумай над тем чтобы убрать алерт и показывать статистику только по кнопке
-    // Сделай что то с кнопкой статс
-    // Добавь кнопку сброса статистики на result view
-    // подумай как внедрить в userDefaults модель Statistics
-    
     @ObservedObject var userSettings = UserSettings()
     
     @State private var whichDoorTap = 0
@@ -24,14 +18,13 @@ struct MainView: View {
     
     @State private var doorWinner = Int.random(in: 1...3)
     
-    @State private var result: String = "Hello"
+    @State private var result = ""
     @State private var doorLooser = 0
-    
     @State private var doorTapButton = false
     @State private var okTapButton = false
     @State private var alertTapButton = false
-    
     @State private var okButtonScore = 0
+    @State private var showInfoView = false
     
     var body: some View {
         NavigationView {
@@ -41,35 +34,35 @@ struct MainView: View {
                     startPoint: .bottom,
                     endPoint: .top
                 )
-                    .ignoresSafeArea()
-                    .opacity(0.8)
+                .ignoresSafeArea()
+                .opacity(0.8)
                 VStack(alignment: .center){
                     Text(
                         changeMainText())
-                        .font(.title)
-                        .bold()
-                        .foregroundColor(.white)
-                        .frame(width: 200, height: 200)
-                        .multilineTextAlignment(.center)
-                        .shadow(radius: 70)
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarTrailing) {
-                                DropMenuForNavigationBar(
-                                    actionFirstButton: {},
-                                    actionSecondButton: {
-                                        userSettings.clearstats()
-                                    },
-                                    actionThirdButton: {},
-                                    actionFourthButton: {},
-                                    textFirstButton: "Play",
-                                    textSecondButton: "Clear stats",
-                                    textThirdButton: "Help",
-                                    textFourthButton: "About",
-                                    buttonColor: .white
-                                )
-                                
-                            }
+                    .font(.title)
+                    .bold()
+                    .foregroundColor(.white)
+                    .frame(width: 200, height: 200)
+                    .multilineTextAlignment(.center)
+                    .shadow(radius: 70)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            DropMenuForNavigationBar(
+                                actionFirstButton: {},
+                                actionSecondButton: {
+                                    userSettings.clearstats()
+                                },
+                                actionThirdButton: {
+                                    showInfoView.toggle()
+                                },
+                                textFirstButton: "Play",
+                                textSecondButton: "Clear stats",
+                                textThirdButton: "Help",
+                                buttonColor: .white
+                            )
+                            
                         }
+                    }
                     HStack(alignment: .center, spacing: 30) {
                         DoorButton(
                             action: { firstDoorTapped() },
@@ -79,7 +72,7 @@ struct MainView: View {
                             okButtonScore: okButtonScore,
                             doorLooser: doorLooser
                         )
-                            .disabled(doorLooser == 1)
+                        .disabled(doorLooser == 1)
                         
                         DoorButton(action: { secondDoorTapped() },
                                    doorNumber: 2,
@@ -88,7 +81,7 @@ struct MainView: View {
                                    okButtonScore: okButtonScore,
                                    doorLooser: doorLooser
                         )
-                            .disabled(doorLooser == 2)
+                        .disabled(doorLooser == 2)
                         
                         DoorButton(action: { thirdDoorTapped() },
                                    doorNumber: 3,
@@ -97,44 +90,46 @@ struct MainView: View {
                                    okButtonScore: okButtonScore,
                                    doorLooser: doorLooser
                         )
-                            .disabled(doorLooser == 3)
+                        .disabled(doorLooser == 3)
                     }
                     .frame(alignment: .center)
                     .padding(.leading, 25)
                     
                     Button("Submit", action: {
                         okButtonTapped();
-                        //doorTapped()
                     }
                     )
-                        .frame(width: 80, height: 40)
-                        .cornerRadius(20)
-                        .background(.green)
-                        .disabled(!doorTapButton)
-                        .foregroundColor(.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.white, lineWidth: 5)
+                    .frame(width: 80, height: 40)
+                    .cornerRadius(20)
+                    .background(.green)
+                    .disabled(!doorTapButton)
+                    .foregroundColor(.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.white, lineWidth: 5)
+                    )
+                    .cornerRadius(20)
+                    .opacity(doorTapButton ? 1 : 0)
+                    .padding(.bottom, 40)
+                    .alert(result, isPresented: $okTapButton) {
+                        Button("OK") { alertTapButton.toggle() }
+                    }
+                    .fullScreenCover(isPresented: $alertTapButton) {
+                        ResultView(
+                            result: winLoseText(),
+                            mainView: self
                         )
-                        .cornerRadius(20)
-                        .opacity(doorTapButton ? 1 : 0)
-                        .padding(.bottom, 40)
-                        .alert(result, isPresented: $okTapButton) {
-                            Button("OK") { alertTapButton.toggle() }
-                        }
-                        .fullScreenCover(isPresented: $alertTapButton) {
-                            ResultView(
-                                result: winLoseText(),
-                                mainView: self
-                            )
-                        }
-                    //                    Text("\(doorWinner)")
-                    //                        .foregroundColor(.white)
+                    }
+                    .fullScreenCover(isPresented: $showInfoView) {
+                        HelpView(infoText: InfoText())
+                    }
                 }
             }
         }
     }
 }
+
+
 
 extension MainView {
     private func  firstDoorTapped() {
@@ -182,9 +177,12 @@ extension MainView {
     }
     private func doorTapped() {
         switch doorWinner {
-        case 1 : result = "First Door Win"; doorLooser = whichDoorTap == 2 ? 3 : 2
-        case 2 : result = "Second Door Win"; doorLooser = whichDoorTap == 1 ? 3 : 1
-        default: result = "Third Door Win"; doorLooser = whichDoorTap == 1 ? 2 : 1
+        case 1 : result = "First Door Win";
+            doorLooser = whichDoorTap == 2 ? 3 : 2
+        case 2 : result = "Second Door Win";
+            doorLooser = whichDoorTap == 1 ? 3 : 1
+        default: result = "Third Door Win";
+            doorLooser = whichDoorTap == 1 ? 2 : 1
         }
     }
     
