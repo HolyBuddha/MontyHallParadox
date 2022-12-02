@@ -12,10 +12,9 @@ The Monty Hall problem is a counter-intuitive statistics puzzle:
 
 <br>Today let’s get an intuition for why a simple game could be so baffling. The game is really about re-evaluating your decisions as new information emerges.
 ## Screenshots
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-02 at 12 59 46](https://user-images.githubusercontent.com/89085993/205285254-00783833-c6e4-4b90-81fd-a1843715da86.png)
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-02 at 12 59 48](https://user-images.githubusercontent.com/89085993/205285273-29e5ef98-aad9-4411-a330-909769443492.png)
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-02 at 12 59 59](https://user-images.githubusercontent.com/89085993/205285292-26c61c61-d71d-4b4f-9ba0-5864eb02b910.png)
-![Simulator Screen Shot - iPhone 14 Pro - 2022-12-02 at 13 00 19](https://user-images.githubusercontent.com/89085993/205285310-25747f84-bc68-4cea-adf5-91ecc78811cd.png)
+![Simulator Screen Shot - iPhone 14 Pro - 2022-12-02 at 12 59 48](https://user-images.githubusercontent.com/89085993/205285651-4a46c55a-f774-426a-ad66-82c6be54104e.png)
+![Simulator Screen Shot - iPhone 14 Pro - 2022-12-02 at 12 59 59](https://user-images.githubusercontent.com/89085993/205285681-b2378a37-7752-4a5f-945c-4744bb215158.png)
+![Simulator Screen Shot - iPhone 14 Pro - 2022-12-02 at 13 00 19](https://user-images.githubusercontent.com/89085993/205285701-d98a9137-51c4-46c8-8017-0cd78215c6e1.png)
 
 ## Stack
 SwiftUI
