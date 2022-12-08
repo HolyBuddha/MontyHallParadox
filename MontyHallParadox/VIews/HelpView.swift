@@ -21,7 +21,7 @@ struct HelpView: View {
             .ignoresSafeArea()
             .opacity(0.8)
             VStack(alignment: .center, spacing: 20) {
-                Text("Game Info")
+                Text("Game Info1")
                     .font(.system(size: 40))
                     .fontWeight(.bold)
                 Text(infoText.textForHelpScreen)
