@@ -16,12 +16,14 @@ struct StarterView: View {
         if isLoading { LoadingView() } else { MainView() }
         }
         .onAppear { fakeLoading() }
+        
     }
 }
 
 struct StarterView_Previews: PreviewProvider {
     static var previews: some View {
         StarterView()
+            
     }
 }
 

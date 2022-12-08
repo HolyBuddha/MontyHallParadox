@@ -29,106 +29,109 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                LinearGradient(
-                    gradient: Gradient(colors: [.red, .blue]),
-                    startPoint: .bottom,
-                    endPoint: .top
-                )
-                .ignoresSafeArea()
-                .opacity(0.8)
-                VStack(alignment: .center){
-                    Text(
-                        changeMainText())
-                    .font(.title)
-                    .bold()
-                    .foregroundColor(.white)
-                    .frame(width: 200, height: 200)
-                    .multilineTextAlignment(.center)
-                    .shadow(radius: 70)
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            DropMenuForNavigationBar(
-                                actionFirstButton: {},
-                                actionSecondButton: {
-                                    userSettings.clearstats()
-                                },
-                                actionThirdButton: {
-                                    showInfoView.toggle()
-                                },
-                                textFirstButton: "Play",
-                                textSecondButton: "Clear stats",
-                                textThirdButton: "Help",
-                                buttonColor: .white
-                            )
-                            
+                GeometryReader{ geometry in
+                    let sideWidth = geometry.size.width - 100
+                    let sideHeight = geometry.size.height * 0.3
+                    LinearGradient(
+                        gradient: Gradient(colors: [.red, .blue]),
+                        startPoint: .bottom,
+                        endPoint: .top
+                    )
+                    .ignoresSafeArea()
+                    .opacity(0.8)
+                    VStack(alignment: .center){
+                        Text(
+                            changeMainText())
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(.white)
+                        .frame(width: sideWidth, height: sideHeight)
+                        .multilineTextAlignment(.center)
+                        .shadow(radius: 70)
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                DropMenuForNavigationBar(
+                                    actionFirstButton: {},
+                                    actionSecondButton: {
+                                        userSettings.clearstats()
+                                    },
+                                    actionThirdButton: {
+                                        showInfoView.toggle()
+                                    },
+                                    textFirstButton: "Play",
+                                    textSecondButton: "Clear stats",
+                                    textThirdButton: "Help",
+                                    buttonColor: .white
+                                )
+                                
+                            }
                         }
-                    }
-                    HStack(alignment: .center, spacing: 30) {
-                        DoorButton(
-                            action: { firstDoorTapped() },
-                            doorNumber: 1,
-                            whichDoorTap: whichDoorTap,
-                            doorWinner: doorWinner,
-                            okButtonScore: okButtonScore,
-                            doorLooser: doorLooser
-                        )
-                        .disabled(doorLooser == 1)
+                        HStack(alignment: .center, spacing: 30) {
+                            DoorButton(
+                                action: { firstDoorTapped() },
+                                doorNumber: 1,
+                                whichDoorTap: whichDoorTap,
+                                doorWinner: doorWinner,
+                                okButtonScore: okButtonScore,
+                                doorLooser: doorLooser
+                            )
+                            .disabled(doorLooser == 1)
+                            
+                            DoorButton(action: { secondDoorTapped() },
+                                       doorNumber: 2,
+                                       whichDoorTap: whichDoorTap,
+                                       doorWinner: doorWinner,
+                                       okButtonScore: okButtonScore,
+                                       doorLooser: doorLooser
+                            )
+                            .disabled(doorLooser == 2)
+                            
+                            DoorButton(action: { thirdDoorTapped() },
+                                       doorNumber: 3,
+                                       whichDoorTap: whichDoorTap,
+                                       doorWinner: doorWinner,
+                                       okButtonScore: okButtonScore,
+                                       doorLooser: doorLooser
+                            )
+                            .disabled(doorLooser == 3)
+                        }
+                        .frame(alignment: .center)
+                        .padding(.leading, 25)
                         
-                        DoorButton(action: { secondDoorTapped() },
-                                   doorNumber: 2,
-                                   whichDoorTap: whichDoorTap,
-                                   doorWinner: doorWinner,
-                                   okButtonScore: okButtonScore,
-                                   doorLooser: doorLooser
+                        Button("Submit", action: {
+                            okButtonTapped();
+                        }
                         )
-                        .disabled(doorLooser == 2)
-                        
-                        DoorButton(action: { thirdDoorTapped() },
-                                   doorNumber: 3,
-                                   whichDoorTap: whichDoorTap,
-                                   doorWinner: doorWinner,
-                                   okButtonScore: okButtonScore,
-                                   doorLooser: doorLooser
+                        .frame(width: 80, height: 40)
+                        .cornerRadius(20)
+                        .background(.green)
+                        .disabled(!doorTapButton)
+                        .foregroundColor(.white)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.white, lineWidth: 5)
                         )
-                        .disabled(doorLooser == 3)
-                    }
-                    .frame(alignment: .center)
-                    .padding(.leading, 25)
-                    
-                    Button("Submit", action: {
-                        okButtonTapped();
-                    }
-                    )
-                    .frame(width: 80, height: 40)
-                    .cornerRadius(20)
-                    .background(.green)
-                    .disabled(!doorTapButton)
-                    .foregroundColor(.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color.white, lineWidth: 5)
-                    )
-                    .cornerRadius(20)
-                    .opacity(doorTapButton ? 1 : 0)
-                    .padding(.bottom, 40)
-                    .alert(result, isPresented: $okTapButton) {
-                        Button("OK") { alertTapButton.toggle() }
-                    }
-                    .fullScreenCover(isPresented: $alertTapButton) {
-                        ResultView(
-                            result: winLoseText(),
-                            mainView: self
-                        )
-                    }
-                    .fullScreenCover(isPresented: $showInfoView) {
-                        HelpView(infoText: InfoText())
+                        .cornerRadius(20)
+                        .opacity(doorTapButton ? 1 : 0)
+                        .padding(.bottom, 40)
+                        .alert(result, isPresented: $okTapButton) {
+                            Button("OK") { alertTapButton.toggle() }
+                        }
+                        .fullScreenCover(isPresented: $alertTapButton) {
+                            ResultView(
+                                result: winLoseText(),
+                                mainView: self
+                            )
+                        }
+                        .fullScreenCover(isPresented: $showInfoView) {
+                            HelpView(infoText: InfoText())
+                        }
                     }
                 }
             }
         }
     }
 }
-
 
 
 extension MainView {
@@ -171,7 +174,10 @@ extension MainView {
     private func changeMainText() -> String {
         switch okButtonScore {
         case 0: return "Please choose your door"
-        case 1: return "The Door \(doorLooser) is lose. Do you want to change your door?"
+        case 1: return """
+        The Door \(doorLooser) is lose.
+        Do you want to change your door?
+        """
         default: return "\(result)"
         }
     }

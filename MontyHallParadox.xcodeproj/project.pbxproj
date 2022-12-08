@@ -15,7 +15,6 @@
 		1273587A27502C45004BD467 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1273587927502C45004BD467 /* Assets.xcassets */; };
 		1273587D27502C45004BD467 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1273587C27502C45004BD467 /* Preview Assets.xcassets */; };
 		1273588427502D1A004BD467 /* DoorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1273588327502D1A004BD467 /* DoorButton.swift */; };
-		127A47C9276FCB2E00FDD143 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127A47C8276FCB2E00FDD143 /* Statistics.swift */; };
 		12B400A828C60FDE00FADA22 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B400A728C60FDD00FADA22 /* HelpView.swift */; };
 		12C850392754216600E7921B /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C850382754216600E7921B /* ResultView.swift */; };
 		12E7AC9A2790E32600ED895F /* DropMenuForNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E7AC992790E32600ED895F /* DropMenuForNavigationBar.swift */; };
@@ -32,7 +31,6 @@
 		1273587927502C45004BD467 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1273587C27502C45004BD467 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1273588327502D1A004BD467 /* DoorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorButton.swift; sourceTree = "<group>"; };
-		127A47C8276FCB2E00FDD143 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		12B400A728C60FDD00FADA22 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		12C850382754216600E7921B /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		12E7AC992790E32600ED895F /* DropMenuForNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropMenuForNavigationBar.swift; sourceTree = "<group>"; };
@@ -53,7 +51,7 @@
 		12078E6627975D3000CD0306 /* VIews */ = {
 			isa = PBXGroup;
 			children = (
-				1273588327502D1A004BD467 /* DoorButton.swift */,
+				12CF4125293A1D6000224A8D /* Buttons */,
 				12078E6427975B5700CD0306 /* LoadingView.swift */,
 				12078E67279765CC00CD0306 /* StarterView.swift */,
 				1273587727502C43004BD467 /* MainView.swift */,
@@ -128,10 +126,17 @@
 		127A47CA276FCDA400FDD143 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				127A47C8276FCB2E00FDD143 /* Statistics.swift */,
 				1263E8DA2939FDD3006CF99F /* Text.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		12CF4125293A1D6000224A8D /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				1273588327502D1A004BD467 /* DoorButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,7 +213,6 @@
 				1273587827502C43004BD467 /* MainView.swift in Sources */,
 				12FC091227596E8700016577 /* UserSettings.swift in Sources */,
 				12B400A828C60FDE00FADA22 /* HelpView.swift in Sources */,
-				127A47C9276FCB2E00FDD143 /* Statistics.swift in Sources */,
 				12C850392754216600E7921B /* ResultView.swift in Sources */,
 				12078E68279765CC00CD0306 /* StarterView.swift in Sources */,
 				1273587627502C43004BD467 /* MontyHallParadoxApp.swift in Sources */,
